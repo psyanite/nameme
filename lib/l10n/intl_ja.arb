@@ -1,0 +1,93 @@
+{
+  "@@last_modified": "2018-12-09T11:36:18.210613",
+  "landingPrompt1": "あなたのためだけに英語の名前を見つけることができます",
+  "@landingPrompt1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingPrompt2": "単純に8つの質問に答える",
+  "@landingPrompt2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingPrompt3": "",
+  "@landingPrompt3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startButton": "スタート",
+  "@startButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "genderQuestion": "あなたの性別は何ですか？",
+  "@genderQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bloodQuestion": "あなたの血液型は何ですか？",
+  "@bloodQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "foodQuestion": "あなたのお気に入りを選ぶ",
+  "@foodQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "animalQuestion": "あなたのお気に入りを選ぶ",
+  "@animalQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weatherQuestion": "あなたのお気に入りを選ぶ",
+  "@weatherQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "drinkQuestion": "あなたのお気に入りを選ぶ",
+  "@drinkQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sceneryQuestion": "あなたのお気に入りを選ぶ",
+  "@sceneryQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extrasQuestion": "3つのお気に入りを選ぶ",
+  "@extrasQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectOneError": "1を選んでください",
+  "@selectOneError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectThreeError": "3を選んでください",
+  "@selectThreeError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameDesc": "あなたのお名前は",
+  "@nameDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bioDesc": "あなたのお伝記は",
+  "@bioDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareButton": "シェア",
+  "@shareButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goAgainButton": "リプレイ",
+  "@goAgainButton": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

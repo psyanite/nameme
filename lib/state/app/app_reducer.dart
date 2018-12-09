@@ -1,6 +1,6 @@
-import 'package:crust/state/app/app_state.dart';
-import 'package:crust/state/error/error_reducer.dart';
-import 'package:crust/state/me/me_reducer.dart';
+import 'package:crystal/state/app/app_state.dart';
+import 'package:crystal/state/error/error_reducer.dart';
+import 'package:crystal/state/me/me_reducer.dart';
 
 AppState appReducer(AppState state, action) {
   return AppState(

@@ -1,5 +1,5 @@
-import 'package:crust/state/error/error_actions.dart';
-import 'package:crust/state/error/error_state.dart';
+import 'package:crystal/state/error/error_actions.dart';
+import 'package:crystal/state/error/error_state.dart';
 import 'package:redux/redux.dart';
 
 Reducer<ErrorState> errorReducer = combineReducers([

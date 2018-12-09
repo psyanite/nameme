@@ -1,0 +1,93 @@
+{
+  "@@last_modified": "2018-12-09T11:36:18.210613",
+  "landingPrompt1": "Let me help you find an English name just for you",
+  "@landingPrompt1": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingPrompt2": "Simply answer 8 questions",
+  "@landingPrompt2": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "landingPrompt3": "And we'll find your English name",
+  "@landingPrompt3": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startButton": "Let's Go!",
+  "@startButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "genderQuestion": "What's your gender?",
+  "@genderQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bloodQuestion": "What's your blood-type?",
+  "@bloodQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "foodQuestion": "Pick your favorite",
+  "@foodQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "animalQuestion": "Pick your favorite",
+  "@animalQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weatherQuestion": "Pick your favorite",
+  "@weatherQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "drinkQuestion": "Pick your favorite",
+  "@drinkQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sceneryQuestion": "Pick your favorite",
+  "@sceneryQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extrasQuestion": "Pick 3 favorites",
+  "@extrasQuestion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectOneError": "Please pick 1",
+  "@selectOneError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "selectThreeError": "Please pick 3",
+  "@selectThreeError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nameDesc": "Your name is",
+  "@nameDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bioDesc": "Your short bio in English",
+  "@bioDesc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareButton": "Share",
+  "@shareButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goAgainButton": "Go Again",
+  "@goAgainButton": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

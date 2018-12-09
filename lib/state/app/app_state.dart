@@ -1,5 +1,5 @@
-import 'package:crust/state/error/error_state.dart';
-import 'package:crust/state/me/me_state.dart';
+import 'package:crystal/state/error/error_state.dart';
+import 'package:crystal/state/me/me_state.dart';
 import 'package:meta/meta.dart';
 
 @immutable

@@ -1,11 +1,13 @@
-class FavoriteRewardRequest {
-  final int rewardId;
+import 'package:crystal/models/emoji.dart';
 
-  FavoriteRewardRequest(this.rewardId);
+class AddEmoji {
+  final Emoji emoji;
+
+  AddEmoji(this.emoji);
 }
 
-class FavoriteRewardSuccess {
-  final Set<int> rewards;
+class AddEmojis {
+  final List<Emoji> emojis;
 
-  FavoriteRewardSuccess(this.rewards);
+  AddEmojis(this.emojis);
 }
