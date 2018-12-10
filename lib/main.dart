@@ -1,4 +1,4 @@
-import 'package:crystal/components/loading_screen.dart';
+import 'package:crystal/components/splash_screen.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/presentation/platform_adaptive.dart';
 import 'package:crystal/state/app/app_reducer.dart';
@@ -43,7 +43,7 @@ class Main extends StatelessWidget {
       child: MaterialApp(
         theme: getTheme(context),
         routes: <String, WidgetBuilder>{
-          MainRoutes.root: (context) => LoadingScreen(),
+          MainRoutes.root: (context) => SplashScreen(),
         },
         localizationsDelegates: [
           const AppLocalizationsDelegate(),

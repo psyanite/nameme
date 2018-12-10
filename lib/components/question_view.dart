@@ -1,4 +1,4 @@
-import 'package:crystal/components/result_screen.dart';
+import 'package:crystal/components/loading_screen.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/question.dart';
@@ -62,9 +62,11 @@ class _PresenterState extends State<_Presenter> {
 
   @override
   Widget build(BuildContext context) {
-    var children = List<Widget>.from([Column(
-      children: <Widget>[Text(question.question, style: TextStyle(fontWeight: Burnt.fontBold)), Container(height: 20.0), _emojis()],
-    )]);
+    var children = List<Widget>.from([
+      Column(
+        children: <Widget>[Text(question.question, style: TextStyle(fontWeight: Burnt.fontBold)), Container(height: 20.0), _emojis()],
+      )
+    ]);
     if (question.emojis.length < 8) children.add(Container(height: 70.0));
     return Scaffold(
       body: Container(
@@ -144,6 +146,7 @@ class _PresenterState extends State<_Presenter> {
                       )
                     : null)),
         splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
       ),
     );
   }
@@ -163,7 +166,7 @@ class _PresenterState extends State<_Presenter> {
     if (question.isLast) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => ResultScreen()),
+        MaterialPageRoute(builder: (_) => LoadingScreen()),
       );
     } else {
       onNext();
