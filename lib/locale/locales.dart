@@ -18,7 +18,7 @@ class AppLocalizations {
 
   String get landingPrompt1 {
     return Intl.message(
-      'Let me help you find an English name just for you',
+      'Let me help you find an English name',
       name: 'landingPrompt1',
     );
   }
@@ -32,7 +32,7 @@ class AppLocalizations {
 
   String get landingPrompt3 {
     return Intl.message(
-      'And we\'ll find your English name',
+      'And we\'ll find the perfect name for you',
       name: 'landingPrompt3',
     );
   }
@@ -147,7 +147,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => ['en', 'ja', 'kr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => ['en', 'ja', 'ko'].contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) => AppLocalizations.load(locale);

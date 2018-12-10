@@ -11,3 +11,5 @@ class AddEmojis {
 
   AddEmojis(this.emojis);
 }
+
+class ClearMe {}

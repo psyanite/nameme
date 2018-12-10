@@ -6,6 +6,7 @@ import 'package:redux/redux.dart';
 Reducer<MeState> meReducer = combineReducers([
   new TypedReducer<MeState, AddEmoji>(addEmoji),
   new TypedReducer<MeState, AddEmojis>(addEmojis),
+  new TypedReducer<MeState, ClearMe>(clearMe),
 ]);
 
 MeState addEmoji(MeState state, AddEmoji action) {
@@ -17,7 +18,7 @@ MeState addEmoji(MeState state, AddEmoji action) {
     case EmojiType.Drink:
       return state.copyWith(drink: action.emoji);
     case EmojiType.Food:
-      return state.copyWith(foods: action.emoji);
+      return state.copyWith(food: action.emoji);
     case EmojiType.Gender:
       return state.copyWith(gender: action.emoji);
     case EmojiType.Scenery:
@@ -31,4 +32,8 @@ MeState addEmoji(MeState state, AddEmoji action) {
 
 MeState addEmojis(MeState state, AddEmojis action) {
   return state.copyWith(extras: action.emojis);
+}
+
+MeState clearMe(MeState state, ClearMe action) {
+  return MeState();
 }

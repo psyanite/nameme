@@ -13,5 +13,3 @@ class Question {
     this.isMulti = false,
   });
 }
-
-enum EmojiType { Animal, Blood, Drink, Extra, Food, Gender, Scenery, Weather}

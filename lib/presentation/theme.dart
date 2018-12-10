@@ -6,7 +6,7 @@ class Burnt {
   static const primaryLight = Color(0xFFFFC86B);
   static const gradientYellow = Color(0xFFF6D242);
   static const gradientPink = Color(0xFFFF52E5);
-  static const textBody = Colors.white;
+  static const textBody = Color(0xFF373a3c);
   static const fontBase = 'OpenSans';
   static const fontFancy = 'NatureBeauty';
   static const fontLight = FontWeight.w100;

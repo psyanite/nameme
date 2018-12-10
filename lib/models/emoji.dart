@@ -8,7 +8,6 @@ class Emoji {
   static final List<Emoji> animals = [
     Emoji(name: 'bear', type: EmojiType.Animal),
     Emoji(name: 'cat', type: EmojiType.Animal),
-    Emoji(name: 'cat', type: EmojiType.Animal),
     Emoji(name: 'dog', type: EmojiType.Animal),
     Emoji(name: 'koala', type: EmojiType.Animal),
     Emoji(name: 'pig', type: EmojiType.Animal),
@@ -16,10 +15,10 @@ class Emoji {
   ];
 
   static final List<Emoji> bloods = [
-    Emoji(name: 'A', type: EmojiType.Blood),
-    Emoji(name: 'AB', type: EmojiType.Blood),
-    Emoji(name: 'B', type: EmojiType.Blood),
-    Emoji(name: 'O', type: EmojiType.Blood),
+    Emoji(name: 'a', type: EmojiType.Blood),
+    Emoji(name: 'ab', type: EmojiType.Blood),
+    Emoji(name: 'b', type: EmojiType.Blood),
+    Emoji(name: 'o', type: EmojiType.Blood),
   ];
 
   static final List<Emoji> drinks = [
@@ -32,24 +31,21 @@ class Emoji {
   ];
 
   static final List<Emoji> extras = [
-    Emoji(name: 'camera', type: EmojiType.Extra),
-    Emoji(name: 'lipstick', type: EmojiType.Extra),
-    Emoji(name: 'movie', type: EmojiType.Extra),
-    Emoji(name: 'nails', type: EmojiType.Extra),
-    Emoji(name: 'paintbrush', type: EmojiType.Extra),
-    Emoji(name: 'plane', type: EmojiType.Extra),
+    Emoji(name: 'movies', type: EmojiType.Extra),
+    Emoji(name: 'music', type: EmojiType.Extra),
+    Emoji(name: 'nature', type: EmojiType.Extra),
+    Emoji(name: 'painting', type: EmojiType.Extra),
+    Emoji(name: 'photography', type: EmojiType.Extra),
     Emoji(name: 'shopping', type: EmojiType.Extra),
-    Emoji(name: 'sparkles', type: EmojiType.Extra),
-    Emoji(name: 'shopping', type: EmojiType.Extra),
-    Emoji(name: 'sparkles', type: EmojiType.Extra),
-    Emoji(name: 'tulip', type: EmojiType.Extra),
+    Emoji(name: 'skating', type: EmojiType.Extra),
+    Emoji(name: 'travelling', type: EmojiType.Extra),
   ];
 
   static final List<Emoji> food = [
     Emoji(name: 'burgers', type: EmojiType.Food),
     Emoji(name: 'chocolate', type: EmojiType.Food),
     Emoji(name: 'dumplings', type: EmojiType.Food),
-    Emoji(name: 'pretzel', type: EmojiType.Food),
+    Emoji(name: 'pretzels', type: EmojiType.Food),
     Emoji(name: 'salad', type: EmojiType.Food),
     Emoji(name: 'soup', type: EmojiType.Food),
   ];
@@ -76,9 +72,9 @@ class Emoji {
   ];
 
 
-  Widget getImage() {
+  Widget getImage({double scale}) {
     String path = 'assets/emojis/${EnumUtil.format(this.type.toString()).toLowerCase()}/${this.name}.png';
-    return Image.asset(path);
+    return Image.asset(path, scale: scale ?? 3.0);
   }
 
   Emoji({

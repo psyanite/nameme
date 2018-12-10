@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2018-12-09T11:36:18.210613",
-  "landingPrompt1": "Let me help you find an English name just for you",
+  "landingPrompt1": "Let me help you find an English name",
   "@landingPrompt1": {
     "type": "text",
     "placeholders": {}
@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "landingPrompt3": "And we'll find your English name",
+  "landingPrompt3": "And we'll find the perfect name for you",
   "@landingPrompt3": {
     "type": "text",
     "placeholders": {}

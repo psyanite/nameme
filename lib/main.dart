@@ -1,15 +1,14 @@
-import 'package:crystal/components/home_screen.dart';
 import 'package:crystal/components/loading_screen.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/presentation/platform_adaptive.dart';
 import 'package:crystal/state/app/app_reducer.dart';
 import 'package:crystal/state/app/app_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_logging/redux_logging.dart';
 import 'package:redux_thunk/redux_thunk.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   List<Middleware<AppState>> createMiddleware() {
@@ -53,7 +52,7 @@ class Main extends StatelessWidget {
         ],
         supportedLocales: [
           const Locale('en', 'US'),
-          const Locale('kr', ''),
+          const Locale('ko', ''),
           const Locale('ja', ''),
         ],
       ),

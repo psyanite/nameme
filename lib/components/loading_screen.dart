@@ -19,7 +19,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   _startTimer() async {
     return Timer(
         Duration(seconds: 3),
-        () => Navigator.push(
+        () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (_) => HomeScreen()),
             ));
@@ -29,7 +29,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            child: Center(child: Text('NameMe', style: TextStyle(fontFamily: Burnt.fontFancy, fontSize: 70.0))),
+            child: Center(child: Text('NameMe', style: TextStyle(color: Colors.white, fontFamily: Burnt.fontFancy, fontSize: 70.0))),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.topLeft,
