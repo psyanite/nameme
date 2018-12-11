@@ -28,7 +28,7 @@ class HomeScreenState extends State<HomeScreen> {
                 text: AppLocalizations.of(context).startButton,
                 onPressed: () => _goToQuestionOne(context),
                 color: Colors.white,
-                fontColor: Burnt.gradientPink,
+                fontColor: Burnt.primary,
               ),
             ],
           ))));
@@ -41,7 +41,7 @@ class HomeScreenState extends State<HomeScreen> {
     if (locale.landingPrompt3 != null) texts.add(locale.landingPrompt3);
     return Column(
         children: List<Widget>.from(texts
-            .map((t) => Padding(padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0), child: Text(t, style: TextStyle(color: Colors.white), textAlign: TextAlign.center,)))));
+            .map((t) => Padding(padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0), child: Text(t, style: TextStyle(color: Colors.white, fontSize: 20.0), textAlign: TextAlign.center,)))));
   }
 
   void _goToQuestionOne(BuildContext context) {

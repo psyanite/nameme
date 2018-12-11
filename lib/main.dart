@@ -46,12 +46,12 @@ class Main extends StatelessWidget {
           MainRoutes.root: (context) => SplashScreen(),
         },
         localizationsDelegates: [
-          const AppLocalizationsDelegate(),
+          AppLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: [
-          const Locale('en', 'US'),
+          const Locale('en', ''),
           const Locale('ko', ''),
           const Locale('ja', ''),
         ],

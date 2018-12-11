@@ -75,13 +75,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "bioDesc": "Your short bio in English",
+  "bioDesc": "Your short bio",
   "@bioDesc": {
     "type": "text",
     "placeholders": {}
   },
   "shareButton": "Share",
   "@shareButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareMessage": "My English name is :name:.\n\n:meaning:\n\n:en-bio:\n\nDownload the NameMe app and find out yours now!",
+  "@shareMessage": {
     "type": "text",
     "placeholders": {}
   },

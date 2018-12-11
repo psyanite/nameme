@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2018-12-09T11:36:18.210613",
+  "@@last_modified": "2018-12-10T22:20:04.526138",
   "landingPrompt1": "Let me help you find an English name",
   "@landingPrompt1": {
     "type": "text",
@@ -75,13 +75,18 @@
     "type": "text",
     "placeholders": {}
   },
-  "bioDesc": "Your short bio in English",
+  "bioDesc": "Your short bio",
   "@bioDesc": {
     "type": "text",
     "placeholders": {}
   },
   "shareButton": "Share",
   "@shareButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareMessage": "My English name is :name:.\n\n:meaning:\n\n:en-bio:\n\nDownload the NameMe app and find out yours now!",
+  "@shareMessage": {
     "type": "text",
     "placeholders": {}
   },

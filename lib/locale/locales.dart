@@ -123,7 +123,7 @@ class AppLocalizations {
 
   String get bioDesc {
     return Intl.message(
-      'Your short bio in English',
+      'Your short bio',
       name: 'bioDesc',
     );
   }
@@ -132,6 +132,13 @@ class AppLocalizations {
     return Intl.message(
       'Share',
       name: 'shareButton',
+    );
+  }
+
+  String get shareMessage {
+    return Intl.message(
+      'My English name is {name}. Download the NameMe app and find out yours now!',
+      name: 'shareMessage',
     );
   }
 

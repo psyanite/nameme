@@ -9,11 +9,13 @@ import 'package:crystal/presentation/theme.dart';
 import 'package:crystal/state/app/app_state.dart';
 import 'package:crystal/state/me/me_actions.dart';
 import 'package:crystal/state/me/me_state.dart';
+import 'package:crystal/utils/util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:share/share.dart';
 
 class ResultScreen extends StatelessWidget {
   @override
@@ -27,78 +29,98 @@ class ResultScreen extends StatelessWidget {
 class _Presenter extends StatelessWidget {
   final MeState me;
   final Function clearMe;
+  Name name;
+  String enBio;
+  String localeBio;
+  String languageCode;
 
   _Presenter({this.me, this.clearMe});
 
   @override
   Widget build(BuildContext context) {
+    languageCode = Localizations.localeOf(context).languageCode;
     if (me.gender == null) return Scaffold();
     return FutureBuilder<Name>(
-        future: getRandomName(me.gender.name, Localizations.localeOf(context).languageCode),
-        builder: (context, AsyncSnapshot<Name> name) {
-          switch (name.connectionState) {
-               case ConnectionState.none:
-                case ConnectionState.active:
-                case ConnectionState.waiting:
-                  return Scaffold();
-                case ConnectionState.done:
-                  if (name.hasError) return Scaffold();
-                  return _content(context, name.data);
-              }
-        });
+      future: getRandomName(me.gender.name),
+      builder: (context, AsyncSnapshot<Name> snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+            return Scaffold();
+          case ConnectionState.done:
+            if (snapshot.hasError) return Scaffold();
+            name = snapshot.data;
+            enBio = Util.getBio(me, name.name, 'en');
+            localeBio = languageCode != 'en' ? Util.getBio(me, name.name, languageCode) : null;
+            return _content(context);
+        }
+      });
   }
 
-  Widget _content(BuildContext context, Name name) {
+  Widget _content(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 50.0, bottom: 20.0),
+        padding: EdgeInsets.only(bottom: 20.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(height: 10.0),
-            _name(context, name),
-//            _bio(),
-            _emojis(me),
+            _name(context),
+            _bio(),
+            _emojis(),
             _buttons(context),
           ],
         ),
       ));
   }
 
-  Widget _name(BuildContext context, Name name) {
+  Widget _name(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text(AppLocalizations.of(context).nameDesc),
+        Text(AppLocalizations
+          .of(context)
+          .nameDesc, style: TextStyle(fontWeight: Burnt.fontLight)),
         Container(height: 10.0),
-        Text(name.name, style: TextStyle(fontSize: 55.0)),
+        Text(name.name, style: TextStyle(fontSize: 55.0, fontWeight: Burnt.fontLight)),
         Container(height: 10.0),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: Text(name.meaning, textAlign: TextAlign.center),
+          child: Text(name.meaning, textAlign: TextAlign.center, style: TextStyle(fontSize: 15.0, fontWeight: Burnt.fontBold)),
         )
       ],
     );
   }
 
   Widget _bio() {
-    // todo: generate bio
+    getChildren(BuildContext context) {
+      var children = <Widget>[
+        Text(AppLocalizations.of(context).bioDesc, style: TextStyle(fontWeight: Burnt.fontLight)),
+        Container(height: 10.0),
+        Text(enBio, textAlign: TextAlign.center, style: TextStyle(fontSize: 15.0, fontWeight: Burnt.fontBold)),
+      ];
+      if (localeBio != null) {
+        children.add(Container(height: 10.0));
+        children.add(Text(localeBio, textAlign: TextAlign.center, style: TextStyle(fontSize: 15.0, fontWeight: Burnt.fontBold)));
+      }
+      return children;
+    }
     return Builder(
-        builder: (context) => Column(children: <Widget>[
-              Text(AppLocalizations.of(context).bioDesc),
-              Text('bio'),
-            ]));
+      builder: (context) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(children: getChildren(context))));
   }
 
-  Widget _emojis(MeState me) {
+  Widget _emojis() {
     return Column(
       children: <Widget>[
         Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[_emoji(me.blood), _emoji(me.animal), _emoji(me.drink), _emoji(me.scenery)]),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[_emoji(me.animal), _emoji(me.food), _emoji(me.drink), _emoji(me.scenery)]),
         Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[_emoji(me.weather), _emoji(me.extras[0]), _emoji(me.extras[1]), _emoji(me.extras[2])]),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[_emoji(me.weather), _emoji(me.extras[0]), _emoji(me.extras[1]), _emoji(me.extras[2])]),
       ],
     );
   }
@@ -108,17 +130,17 @@ class _Presenter extends StatelessWidget {
   }
 
   Widget _buttons(BuildContext context) {
+    var locale = AppLocalizations.of(context);
     return Column(
       children: <Widget>[
-        // get button text from localization
         BigButton(
-          text: AppLocalizations.of(context).shareButton,
-          onPressed: () {},
+          text: locale.shareButton,
+          onPressed: () => _share(locale.shareMessage),
           fontColor: Colors.white,
           isGradient: true,
         ),
         BigButton(
-          text: AppLocalizations.of(context).goAgainButton,
+          text: locale.goAgainButton,
           onPressed: () {
             clearMe();
             Navigator.pushReplacement(
@@ -126,14 +148,21 @@ class _Presenter extends StatelessWidget {
               MaterialPageRoute(builder: (_) => HomeScreen()),
             );
           },
-          borderColor: Burnt.gradientPink,
-          fontColor: Burnt.gradientPink,
+          borderColor: Burnt.primary,
+          fontColor: Burnt.primary,
         ),
       ],
     );
   }
 
-  Future<Name> getRandomName(String gender, String languageCode) async {
+  void _share(String template) {
+    var url = 'https://raw.githubusercontent.com/psyanite/crystal/master/app/assets/img/demo.jpg';
+    var message = template.replaceAll(":name:", name.name).replaceAll(":meaning:", name.meaning).replaceAll(":en-bio:", enBio).replaceAll(":locale-bio:", localeBio);
+    message = '$message \n\n $url';
+    Share.share(message);
+  }
+
+  Future<Name> getRandomName(String gender) async {
     final lines = (await rootBundle.loadString('assets/names/$gender.csv')).split('\n');
     var details = lines[Random().nextInt(lines.length - 2) + 1].split('","');
     var meaning;

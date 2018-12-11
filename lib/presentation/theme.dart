@@ -15,5 +15,4 @@ class Burnt {
   static const fontExtraBold = FontWeight.w800;
   static var display4 = TextStyle(fontSize: 28.0);
   static var title = TextStyle(fontSize: 20.0, fontWeight: Burnt.fontBold);
-  static var buttonFontSize = 20.0;
 }

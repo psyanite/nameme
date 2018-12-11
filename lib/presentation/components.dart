@@ -37,16 +37,19 @@ class BigButton extends StatelessWidget {
               child: Container(
                   color: color,
                   decoration: decoration,
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  padding: EdgeInsets.symmetric(vertical: this.borderColor != null ? 10.0 : 12.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(text, style: TextStyle(fontSize: Burnt.buttonFontSize, color: fontColor)),
+                      Text(text, style: TextStyle(fontSize: 20.0, color: fontColor, fontWeight: Burnt.fontBold)),
                     ],
                   ),
           ),
-          onPressed: onPressed),
+          onPressed: onPressed,
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+      ),
     );
   }
 }

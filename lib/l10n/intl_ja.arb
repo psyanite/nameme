@@ -1,11 +1,11 @@
 {
   "@@last_modified": "2018-12-09T11:36:18.210613",
-  "landingPrompt1": "あなたのためだけに英語の名前を見つけることができます",
+  "landingPrompt1": "あなたのためだけに英語の名前を見つけてあげる",
   "@landingPrompt1": {
     "type": "text",
     "placeholders": {}
   },
-  "landingPrompt2": "単純に8つの質問に答える",
+  "landingPrompt2": "単純に8つの質問に答えて！",
   "@landingPrompt2": {
     "type": "text",
     "placeholders": {}
@@ -15,7 +15,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startButton": "スタート",
+  "startButton": "スタート！",
   "@startButton": {
     "type": "text",
     "placeholders": {}
@@ -82,6 +82,11 @@
   },
   "shareButton": "シェア",
   "@shareButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareMessage": "私の英語名前は:name:なのです.\n\n:meaning:\n\n:en-bio:\n\n:locale-bio:\n\n早くNameMeをダウンロードして自分の英語名前を見つけよう!",
+  "@shareMessage": {
     "type": "text",
     "placeholders": {}
   },
