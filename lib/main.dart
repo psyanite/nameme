@@ -1,8 +1,10 @@
 import 'package:crystal/components/splash_screen.dart';
+import 'package:crystal/config/config.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/presentation/platform_adaptive.dart';
 import 'package:crystal/state/app/app_reducer.dart';
 import 'package:crystal/state/app/app_state.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -38,6 +40,7 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAdMob.instance.initialize(appId: Config.adMobId);
     return StoreProvider<AppState>(
       store: store,
       child: MaterialApp(

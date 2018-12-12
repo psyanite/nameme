@@ -6,6 +6,8 @@ version: 1.0.0+1
 environment:
     sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
+
+
 dependencies:
 
     # Flutter
@@ -24,6 +26,9 @@ dependencies:
     intl: ^0.15.7
     cupertino_icons: ^0.1.2
     share: ^0.5.3
+    firebase_admob: ^0.7.0
+
+
 
 dev_dependencies:
     intl_translation: 0.17.2

@@ -1,8 +1,12 @@
 import 'package:crystal/components/question_view.dart';
+import 'package:crystal/components/result_screen.dart';
+import 'package:crystal/config/config.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/question.dart';
 import 'package:crystal/presentation/theme.dart';
+import 'package:crystal/utils/util.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +17,10 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreenState extends State<QuestionScreen> {
   PageController _controller = new PageController();
+  BannerAd _bannerAd;
 
-  final dotContainerHeight = 50.0;
+  final double _dotContainerHeight = 50.0;
+  final double _bannerAdHeight = 50.0;
 
   List<Question> getQuestions(BuildContext context) {
     return [
@@ -30,28 +36,37 @@ class _QuestionScreenState extends State<QuestionScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _bannerAd = Util.buildBannerAd()..load();
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     _controller = null;
+    _bannerAd.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    _bannerAd..show();
     var questions = getQuestions(context);
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          _Dots(controller: _controller, itemCount: questions.length, height: dotContainerHeight),
-          Container(
-            height: MediaQuery
-              .of(context)
-              .size
-              .height - dotContainerHeight,
-            child: _questionScreens(questions),
-          ),
-        ],
-      ));
+    return Container(
+      child: Scaffold(
+        body: Column(
+          children: <Widget>[
+            _Dots(controller: _controller, itemCount: questions.length, height: _dotContainerHeight),
+            Container(
+              height: MediaQuery.of(context).size.height - _dotContainerHeight - _bannerAdHeight,
+              child: _questionScreens(questions),
+            ),
+          ],
+        )),
+      padding: EdgeInsets.only(bottom: _bannerAdHeight),
+      color: Colors.grey[50],
+    );
   }
 
   Widget _questionScreens(List<Question> questions) {

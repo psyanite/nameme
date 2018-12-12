@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:crystal/components/home_screen.dart';
+import 'package:crystal/config/config.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/name.dart';
@@ -10,6 +11,7 @@ import 'package:crystal/state/app/app_state.dart';
 import 'package:crystal/state/me/me_actions.dart';
 import 'package:crystal/state/me/me_state.dart';
 import 'package:crystal/utils/util.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -26,22 +28,46 @@ class ResultScreen extends StatelessWidget {
   }
 }
 
-class _Presenter extends StatelessWidget {
+class _Presenter extends StatefulWidget {
   final MeState me;
   final Function clearMe;
-  Name name;
-  String enBio;
-  String localeBio;
-  String languageCode;
 
   _Presenter({this.me, this.clearMe});
 
   @override
+  _PresenterState createState() {
+    return new _PresenterState();
+  }
+}
+
+class _PresenterState extends State<_Presenter> {
+  Name name;
+  String enBio;
+  String localeBio;
+  String languageCode;
+  BannerAd _bannerAd;
+
+  final double _bannerAdHeight = 50.0;
+
+  @override
+  void initState() {
+    super.initState();
+    _bannerAd = Util.buildBannerAd()..load();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     languageCode = Localizations.localeOf(context).languageCode;
-    if (me.gender == null) return Scaffold();
+    if (widget.me.gender == null) return Scaffold();
+    if (name != null) return _content(context);
     return FutureBuilder<Name>(
-      future: getRandomName(me.gender.name),
+      future: getRandomName(widget.me.gender.name),
       builder: (context, AsyncSnapshot<Name> snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
@@ -51,29 +77,34 @@ class _Presenter extends StatelessWidget {
           case ConnectionState.done:
             if (snapshot.hasError) return Scaffold();
             name = snapshot.data;
-            enBio = Util.getBio(me, name.name, 'en');
-            localeBio = languageCode != 'en' ? Util.getBio(me, name.name, languageCode) : null;
+            enBio = Util.getBio(widget.me, name.name, 'en');
+            localeBio = languageCode != 'en' ? Util.getBio(widget.me, name.name, languageCode) : null;
             return _content(context);
         }
       });
   }
 
   Widget _content(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(bottom: 20.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(height: 10.0),
-            _name(context),
-            _bio(),
-            _emojis(),
-            _buttons(context),
-          ],
-        ),
-      ));
+    _bannerAd..show();
+    return Container(
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.only(bottom: 20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(height: 10.0),
+              _name(context),
+              _bio(),
+              _emojis(),
+              _buttons(context),
+            ],
+          ),
+        )),
+      padding: EdgeInsets.only(bottom: _bannerAdHeight),
+      color: Colors.grey[50],
+    );
   }
 
   Widget _name(BuildContext context) {
@@ -117,10 +148,10 @@ class _Presenter extends StatelessWidget {
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[_emoji(me.animal), _emoji(me.food), _emoji(me.drink), _emoji(me.scenery)]),
+          children: <Widget>[_emoji(widget.me.animal), _emoji(widget.me.food), _emoji(widget.me.drink), _emoji(widget.me.scenery)]),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[_emoji(me.weather), _emoji(me.extras[0]), _emoji(me.extras[1]), _emoji(me.extras[2])]),
+          children: <Widget>[_emoji(widget.me.weather), _emoji(widget.me.extras[0]), _emoji(widget.me.extras[1]), _emoji(widget.me.extras[2])]),
       ],
     );
   }
@@ -142,7 +173,7 @@ class _Presenter extends StatelessWidget {
         BigButton(
           text: locale.goAgainButton,
           onPressed: () {
-            clearMe();
+            widget.clearMe();
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (_) => HomeScreen()),

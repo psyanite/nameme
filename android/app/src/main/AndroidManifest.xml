@@ -16,6 +16,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="crust"
         android:icon="@mipmap/ic_launcher">
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -23,6 +24,8 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+
+            <!-- Splash Screen Configuration -->
             <!-- This keeps the window background of the activity showing
                  until Flutter renders its first frame. It can be removed if
                  there is no splash screen (such as the default splash screen
@@ -54,6 +57,12 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
+        <!-- Google Ads Admob configuration -->
+        <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ca-app-pub-6524279756456110~1563270059"/>
+
     </application>
 
 </manifest>

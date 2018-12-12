@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:crystal/components/result_screen.dart';
 import 'package:crystal/presentation/theme.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -10,23 +11,35 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  InterstitialAd _interstitial;
+
   @override
-  void initState() {
-    super.initState();
-    _startTimer();
+  void dispose() {
+    _interstitial.dispose();
+    super.dispose();
   }
 
-  _startTimer() async {
-    return Timer(
-        Duration(seconds: 3),
-        () => Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => ResultScreen()),
-            ));
+  _startTimer(BuildContext context) async {
+    return Timer(Duration(seconds: 3), () {
+      _interstitial = InterstitialAd(
+          adUnitId: InterstitialAd.testAdUnitId,
+//            adUnitId: 'ca-app-pub-6524279756456110/9294296703',
+          listener: (MobileAdEvent event) {
+            if (event == MobileAdEvent.closed) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => ResultScreen()),
+              );
+            }
+          })
+        ..load()
+        ..show();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    _startTimer(context);
     return Scaffold(
         body: Container(
             child: Center(

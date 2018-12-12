@@ -15,6 +15,7 @@ Make your own Magic
 * Get 20-30 different Korean name descriptions
 * Create launcher icon
 * Generate ads
+* Add google app id https://firebase.google.com/docs/android/setup
 
 ## Must Haves 
 * Name pronunciations

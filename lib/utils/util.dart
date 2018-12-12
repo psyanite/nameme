@@ -1,4 +1,5 @@
 import 'package:crystal/state/me/me_state.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 class Util {
   static String random(String string) {
@@ -63,5 +64,16 @@ class Util {
         .replaceAll('{extra-1}', me.extras[0].ja)
         .replaceAll('{extra-2}', me.extras[1].ja)
         .replaceAll('{extra-3}', me.extras[2].ja);
+  }
+
+  static BannerAd buildBannerAd() {
+    return BannerAd(
+      adUnitId: BannerAd.testAdUnitId,
+//      adUnitId: 'ca-app-pub-6524279756456110/5953941201',
+      size: AdSize.banner,
+      listener: (MobileAdEvent event) {
+        print("banner event: $event");
+      }
+    );
   }
 }
