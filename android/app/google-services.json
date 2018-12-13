@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:78759597703:android:fc317a33a43181db",
         "android_client_info": {
-          "package_name": "com.burntoast.crust"
+          "package_name": "com.burntoast.crystal"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "78759597703-5grpi0j3gv6l89ti95j13ijqgt2u0uk5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.burntoast.crust",
+            "package_name": "com.burntoast.crystal",
             "certificate_hash": "1da5ec92f69916ff6646943dc4ec8aa622cfd269"
           }
         },
@@ -47,7 +47,7 @@
               "client_id": "78759597703-s5d783k7evpp1mrk0g0go6oh1p97q2ta.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.burntoast.crust"
+                "bundle_id": "com.burntoast.crystal"
               }
             }
           ]

@@ -32,7 +32,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.burntoast.crust"
+        applicationId "com.burntoast.crystal"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode flutterVersionCode.toInteger()
