@@ -32,6 +32,9 @@ dependencies:
 
 dev_dependencies:
     intl_translation: 0.17.2
+    flutter_launcher_icons: ^0.7.0
+
+
 
 flutter:
 
@@ -60,3 +63,13 @@ flutter:
           -   asset: assets/fonts/OpenSans-Regular.ttf
           -   asset: assets/fonts/OpenSans-Bold.ttf
               weight: 600
+
+
+
+flutter_icons:
+    ios: true
+    android: true
+    image_path_ios: "assets/launcher/icon.png"
+    image_path_android: "assets/launcher/icon.png"
+    adaptive_icon_background: "assets/launcher/background.png"
+    adaptive_icon_foreground: "assets/launcher/foreground.png"
