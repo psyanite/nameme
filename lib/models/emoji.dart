@@ -13,7 +13,7 @@ class Emoji {
     Emoji(name: 'cat', type: EmojiType.Animal, en: 'cats', ko: '곰', ja: 'ねこ'),
     Emoji(name: 'dog', type: EmojiType.Animal, en: 'dogs', ko: '곰', ja: 'いぬ'),
     Emoji(name: 'koala', type: EmojiType.Animal, en: 'koalas', ko: '곰', ja: 'コアラ'),
-    Emoji(name: 'pig', type: EmojiType.Animal, en: 'pigs', ko: '곰', ja: 'ぶた'),
+    Emoji(name: 'hamster', type: EmojiType.Animal, en: 'hamsters', ko: '곰', ja: 'ハムスター'),
     Emoji(name: 'rabbit', type: EmojiType.Animal, en: 'rabbits', ko: '곰', ja: 'うさぎ'),
   ];
 
