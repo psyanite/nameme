@@ -1,8 +1,10 @@
 import 'package:crystal/models/emoji.dart';
+import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 
 @immutable
 class MeState {
+  final MediaQueryData mediaData;
   final Emoji animal;
   final Emoji blood;
   final Emoji drink;
@@ -13,6 +15,7 @@ class MeState {
   final Emoji weather;
 
   MeState({
+    this.mediaData,
     this.animal,
     this.blood,
     this.drink,
@@ -24,8 +27,9 @@ class MeState {
   });
 
   MeState copyWith(
-      {Emoji animal, Emoji blood, Emoji drink, List<Emoji> extras, Emoji food, Emoji gender, Emoji scenery, Emoji weather}) {
+      {MediaQueryData mediaData,Emoji animal, Emoji blood, Emoji drink, List<Emoji> extras, Emoji food, Emoji gender, Emoji scenery, Emoji weather}) {
     return MeState(
+      mediaData: mediaData ?? this.mediaData,
       animal: animal ?? this.animal,
       blood: blood ?? this.blood,
       drink: drink ?? this.drink,
@@ -40,6 +44,7 @@ class MeState {
   @override
   String toString() {
     return '''{
+        mediaData: $mediaData,
         animal: $animal,
         blood: $blood,
         drink: $drink,

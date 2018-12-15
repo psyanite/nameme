@@ -1,7 +1,7 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:crystal/components/home_screen.dart';
-import 'package:crystal/config/config.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/name.dart';
@@ -24,20 +24,21 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, dynamic>(
       converter: (Store<AppState> store) => _Props.fromStore(store),
-      builder: (context, props) => _Presenter(me: props.me, clearMe: props.clearMe));
+      builder: (context, props) => _Presenter(me: props.me, clearMe: props.clearMe, isCompact: props.isCompact, bodyFontSize: props.bodyFontSize, nameFontSize: props.nameFontSize));
   }
 }
 
 class _Presenter extends StatefulWidget {
   final MeState me;
   final Function clearMe;
+  final bool isCompact;
+  final double bodyFontSize;
+  final double nameFontSize;
 
-  _Presenter({this.me, this.clearMe});
+  _Presenter({this.me, this.clearMe, this.isCompact, this.nameFontSize, this.bodyFontSize});
 
   @override
-  _PresenterState createState() {
-    return new _PresenterState();
-  }
+  _PresenterState createState() => new _PresenterState();
 }
 
 class _PresenterState extends State<_Presenter> {
@@ -88,18 +89,20 @@ class _PresenterState extends State<_Presenter> {
     _bannerAd..show();
     return Container(
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(bottom: 20.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(height: 10.0),
-              _name(context),
-              _bio(),
-              _emojis(),
-              _buttons(context),
-            ],
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(height: 10.0),
+                _name(context),
+                _bio(),
+                _emojis(),
+                _buttons(context),
+              ],
+            ),
           ),
         )),
       padding: EdgeInsets.only(bottom: _bannerAdHeight),
@@ -110,15 +113,17 @@ class _PresenterState extends State<_Presenter> {
   Widget _name(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text(AppLocalizations
-          .of(context)
-          .nameDesc, style: TextStyle(fontWeight: Burnt.fontLight)),
-        Container(height: 10.0),
-        Text(name.name, style: TextStyle(fontSize: 55.0, fontWeight: Burnt.fontLight)),
+        Padding(
+          padding: EdgeInsets.only(bottom: widget.isCompact ? 0.0 : 10.0),
+          child: Text(AppLocalizations
+            .of(context)
+            .nameDesc, style: TextStyle(fontWeight: Burnt.fontLight)),
+        ),
+        Text(name.name, style: TextStyle(fontSize: widget.nameFontSize, fontWeight: Burnt.fontLight)),
         Container(height: 10.0),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: Text(name.meaning, textAlign: TextAlign.center, style: TextStyle(fontSize: 15.0, fontWeight: Burnt.fontBold)),
+          child: Text(name.meaning, textAlign: TextAlign.center, style: TextStyle(fontSize: widget.bodyFontSize, fontWeight: Burnt.fontBold)),
         )
       ],
     );
@@ -129,11 +134,11 @@ class _PresenterState extends State<_Presenter> {
       var children = <Widget>[
         Text(AppLocalizations.of(context).bioDesc, style: TextStyle(fontWeight: Burnt.fontLight)),
         Container(height: 10.0),
-        Text(enBio, textAlign: TextAlign.center, style: TextStyle(fontSize: 15.0, fontWeight: Burnt.fontBold)),
+        Text(enBio, textAlign: TextAlign.center, style: TextStyle(fontSize: widget.bodyFontSize, fontWeight: Burnt.fontBold)),
       ];
       if (localeBio != null) {
         children.add(Container(height: 10.0));
-        children.add(Text(localeBio, textAlign: TextAlign.center, style: TextStyle(fontSize: 15.0, fontWeight: Burnt.fontBold)));
+        children.add(Text(localeBio, textAlign: TextAlign.center, style: TextStyle(fontSize: widget.bodyFontSize, fontWeight: Burnt.fontBold)));
       }
       return children;
     }
@@ -220,13 +225,20 @@ class _PresenterState extends State<_Presenter> {
 class _Props {
   final MeState me;
   final Function clearMe;
+  final bool isCompact;
+  final double nameFontSize;
+  final double bodyFontSize;
 
-  _Props({this.me, this.clearMe});
+  _Props({this.me, this.clearMe, this.isCompact, this.nameFontSize, this.bodyFontSize});
 
   static fromStore(Store<AppState> store) {
+    var isCompact = store.state.me.mediaData.size.height < 760.0;
     return _Props(
       me: store.state.me,
       clearMe: () => store.dispatch(ClearMe()),
+      isCompact: isCompact,
+      nameFontSize: isCompact ? 45.0: 58.0,
+      bodyFontSize: isCompact ? 12.0 : 18.0,
     );
   }
 }

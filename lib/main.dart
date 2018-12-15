@@ -26,27 +26,36 @@ void main() async {
     middleware: createMiddleware(),
   );
 
-  runApp(Main(store: store));
+  runApp(_Main(store: store));
 }
 
 class MainRoutes {
   static const String root = '/';
 }
 
-class Main extends StatelessWidget {
+class _Main extends StatefulWidget {
   final store;
 
-  Main({this.store});
+  _Main({this.store});
+
+  @override
+  _MainState createState() {
+    return new _MainState();
+  }
+}
+
+class _MainState extends State<_Main> {
+  double _dpi = 1.0;
 
   @override
   Widget build(BuildContext context) {
     FirebaseAdMob.instance.initialize(appId: Config.adMobId);
     return StoreProvider<AppState>(
-      store: store,
+      store: widget.store,
       child: MaterialApp(
-        theme: getTheme(context),
+        theme: getTheme(context, _dpi),
         routes: <String, WidgetBuilder>{
-          MainRoutes.root: (context) => SplashScreen(),
+          MainRoutes.root: (context) => SplashScreen(setDpi: (dpi) => setState(() => setState(() => _dpi = dpi))),
         },
         localizationsDelegates: [
           AppLocalizationsDelegate(),

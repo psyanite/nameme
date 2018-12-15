@@ -54,7 +54,7 @@ class _BigButtonState extends State<BigButton> {
     }
 
     return Container(
-      padding: EdgeInsets.all(widget.padding ?? 10.0),
+      padding: EdgeInsets.symmetric(horizontal: widget.padding ?? 10.0),
       child: FlatButton(
         child: Container(
           height: this.widget.borderColor != null ? 40.0 : 42.0,
@@ -74,7 +74,7 @@ class _BigButtonState extends State<BigButton> {
   }
 
   Widget _text() {
-    return Text(widget.text, style: TextStyle(fontSize: 20.0, color: widget.fontColor, fontWeight: Burnt.fontBold));
+    return Text(widget.text, style: TextStyle(color: widget.fontColor, fontWeight: Burnt.fontBold));
   }
 
   Widget _spinner() {

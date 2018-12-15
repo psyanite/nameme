@@ -3,14 +3,11 @@
 Make your own Magic
 
 ## Things To Do
-* Push repos into Bitbucket
-* Fix formatting for smaller screen sizes
-* Get 20-30 different English name meanings
-* Get 20-30 different Korean name meanings
+* Add google app id https://firebase.google.com/docs/android/setup
 * Name pronunciations
+* Get 20-30 different Korean name meanings
 * Get Korean translation for in-app copy
 * Get Japanese translations for in-app copy
-* Add google app id https://firebase.google.com/docs/android/setup
 
 # Done
 * Google ads
@@ -18,6 +15,8 @@ Make your own Magic
 * Collect girl and boy names
 * Add launcher icon
 * Korean, Japanese and English languages
+* Push repos into Bitbucket
+* Fix formatting for smaller screen sizes
 
 ## Ideas
 * Name variations 

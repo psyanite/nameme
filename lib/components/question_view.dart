@@ -64,7 +64,7 @@ class _PresenterState extends State<_Presenter> {
   Widget build(BuildContext context) {
     var children = List<Widget>.from([
       Column(
-        children: <Widget>[Text(question.question, style: TextStyle(fontWeight: Burnt.fontBold, fontSize: 20.0)), Container(height: 20.0), _emojis()],
+        children: <Widget>[Text(question.question, style: TextStyle(fontWeight: Burnt.fontBold)), Container(height: 20.0), _emojis()],
       )
     ]);
     if (question.emojis.length < 8) children.add(Container(height: 70.0));

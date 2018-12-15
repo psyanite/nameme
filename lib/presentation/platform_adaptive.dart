@@ -2,20 +2,23 @@ import 'package:crystal/presentation/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-ThemeData getTheme(context) => ThemeData(
-      primarySwatch: Burnt.material_primary,
-      accentColor: Burnt.material_primary,
-      fontFamily: Burnt.fontBase,
-      textTheme: Theme.of(context)
-          .textTheme
-          .apply(
-            bodyColor: Burnt.textBody,
-            displayColor: Burnt.textBody,
-          )
-          .merge(TextTheme(
-              body1: TextStyle(fontSize: 16.0),
-      )),
-    );
+ThemeData getTheme(context, dpi) {
+  return ThemeData(
+    primarySwatch: Burnt.material_primary,
+    accentColor: Burnt.material_primary,
+    fontFamily: Burnt.fontBase,
+    textTheme: Theme.of(context)
+      .textTheme
+      .apply(
+      bodyColor: Burnt.textBody,
+      displayColor: Burnt.textBody,
+    )
+      .merge(TextTheme(
+      body1: TextStyle(fontSize: 15.0/dpi),
+      button: TextStyle(fontSize: 15.0/dpi)
+    )),
+  );
+}
 
 /// App bar that uses iOS styling on iOS
 class PlatformAdaptiveAppBar extends AppBar {

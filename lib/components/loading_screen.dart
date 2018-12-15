@@ -25,7 +25,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           adUnitId: InterstitialAd.testAdUnitId,
 //            adUnitId: 'ca-app-pub-6524279756456110/9294296703',
           listener: (MobileAdEvent event) {
-            if (event == MobileAdEvent.closed) {
+            if (event == MobileAdEvent.closed || event == MobileAdEvent.failedToLoad) {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (_) => ResultScreen()),

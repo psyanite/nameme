@@ -4,6 +4,7 @@ import 'package:crystal/state/me/me_state.dart';
 import 'package:redux/redux.dart';
 
 Reducer<MeState> meReducer = combineReducers([
+  new TypedReducer<MeState, SetMediaData>(setMediaQuery),
   new TypedReducer<MeState, AddEmoji>(addEmoji),
   new TypedReducer<MeState, AddEmojis>(addEmojis),
   new TypedReducer<MeState, ClearMe>(clearMe),
@@ -30,10 +31,14 @@ MeState addEmoji(MeState state, AddEmoji action) {
   }
 }
 
+MeState setMediaQuery(MeState state, SetMediaData action) {
+  return state.copyWith(mediaData: action.mediaQuery);
+}
+
 MeState addEmojis(MeState state, AddEmojis action) {
   return state.copyWith(extras: action.emojis);
 }
 
 MeState clearMe(MeState state, ClearMe action) {
-  return MeState();
+  return MeState().copyWith(mediaData: state.mediaData);
 }

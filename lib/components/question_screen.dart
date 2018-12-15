@@ -1,6 +1,4 @@
 import 'package:crystal/components/question_view.dart';
-import 'package:crystal/components/result_screen.dart';
-import 'package:crystal/config/config.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/question.dart';
