@@ -1,4 +1,4 @@
-# crystal
+# 🔮 nameme
 
 Make your own Magic
 
