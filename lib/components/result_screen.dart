@@ -169,6 +169,7 @@ class _PresenterState extends State<_Presenter> {
           onPressed: () => _share(locale.shareMessage),
           fontColor: Colors.white,
           isGradient: true,
+          isSpinnable: true,
         ),
         BigButton(
           text: locale.goAgainButton,
@@ -187,8 +188,9 @@ class _PresenterState extends State<_Presenter> {
   }
 
   void _share(String template) {
-    var url = 'https://raw.githubusercontent.com/psyanite/crystal/master/app/assets/img/demo.jpg';
-    var message = template.replaceAll(":name:", name.name).replaceAll(":meaning:", name.meaning).replaceAll(":en-bio:", enBio).replaceAll(":locale-bio:", localeBio);
+    const url = 'https://raw.githubusercontent.com/psyanite/crystal/master/app/assets/img/demo.jpg';
+    var message = template.replaceAll(":name:", name.name).replaceAll(":meaning:", name.meaning).replaceAll(":en-bio:", enBio);
+    if (message.contains(":locale-bio:")) message = message.replaceAll(":locale-bio:", localeBio);
     message = '$message \n\n $url';
     Share.share(message);
   }

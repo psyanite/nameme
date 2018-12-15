@@ -3,6 +3,8 @@
 Make your own Magic
 
 ## Things To Do
+* Push repos into Bitbucket
+* Fix formatting for smaller screen sizes
 * Get 20-30 different English name meanings
 * Get 20-30 different Korean name meanings
 * Name pronunciations
