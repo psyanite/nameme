@@ -20,6 +20,7 @@ Make your own Magic
 
 ## Ideas
 * Name variations 
+* Allow users to save names as favorites for later access
 
 ## How to Locale
 * Add new get functions in `locale/locales.dart`
