@@ -1,4 +1,4 @@
-package com.burntoast.crystal;
+package com.burntoast.nameme;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
