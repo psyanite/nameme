@@ -19,25 +19,27 @@ class MessageLookup extends MessageLookupByLibrary {
   get localeName => 'ko';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "animalQuestion" : MessageLookupByLibrary.simpleMessage("Pick your favorite"),
-    "bioDesc" : MessageLookupByLibrary.simpleMessage("Your short bio"),
-    "bloodQuestion" : MessageLookupByLibrary.simpleMessage("What\'s your blood-type?"),
-    "drinkQuestion" : MessageLookupByLibrary.simpleMessage("Pick your favorite"),
-    "extrasQuestion" : MessageLookupByLibrary.simpleMessage("Pick 3 favorites"),
-    "foodQuestion" : MessageLookupByLibrary.simpleMessage("Pick your favorite"),
-    "genderQuestion" : MessageLookupByLibrary.simpleMessage("What\'s your gender?"),
-    "goAgainButton" : MessageLookupByLibrary.simpleMessage("Go Again"),
-    "landingPrompt1" : MessageLookupByLibrary.simpleMessage("Let me help you find an English name"),
-    "landingPrompt2" : MessageLookupByLibrary.simpleMessage("Simply answer 8 questions"),
-    "landingPrompt3" : MessageLookupByLibrary.simpleMessage("And we\'ll find the perfect name for you"),
-    "nameDesc" : MessageLookupByLibrary.simpleMessage("Your name is"),
-    "sceneryQuestion" : MessageLookupByLibrary.simpleMessage("Pick your favorite"),
-    "selectOneError" : MessageLookupByLibrary.simpleMessage("Please pick 1"),
-    "selectThreeError" : MessageLookupByLibrary.simpleMessage("Please pick 3"),
-    "shareButton" : MessageLookupByLibrary.simpleMessage("Share"),
-    "shareMessage" : MessageLookupByLibrary.simpleMessage("My English name is :name:.\n\n:meaning:\n\n:en-bio:\n\nDownload the NameMe app and find out yours now!"),
-    "startButton" : MessageLookupByLibrary.simpleMessage("Let\'s Go!"),
-    "weatherQuestion" : MessageLookupByLibrary.simpleMessage("Pick your favorite")
-  };
+
+  static _notInlinedMessages(_) => <String, Function>{
+        "animalQuestion": MessageLookupByLibrary.simpleMessage("Pick your favorite"),
+        "bioDesc": MessageLookupByLibrary.simpleMessage("Your short bio"),
+        "bloodQuestion": MessageLookupByLibrary.simpleMessage("What\'s your blood-type?"),
+        "drinkQuestion": MessageLookupByLibrary.simpleMessage("Pick your favorite"),
+        "extrasQuestion": MessageLookupByLibrary.simpleMessage("Pick 3 favorites"),
+        "foodQuestion": MessageLookupByLibrary.simpleMessage("Pick your favorite"),
+        "genderQuestion": MessageLookupByLibrary.simpleMessage("What\'s your gender?"),
+        "goAgainButton": MessageLookupByLibrary.simpleMessage("Go Again"),
+        "landingPrompt1": MessageLookupByLibrary.simpleMessage("Let me help you find an English name"),
+        "landingPrompt2": MessageLookupByLibrary.simpleMessage("Simply answer 8 questions"),
+        "landingPrompt3": MessageLookupByLibrary.simpleMessage("And we\'ll find the perfect name for you"),
+        "nameDesc": MessageLookupByLibrary.simpleMessage("Your name is"),
+        "sceneryQuestion": MessageLookupByLibrary.simpleMessage("Pick your favorite"),
+        "selectOneError": MessageLookupByLibrary.simpleMessage("Please pick 1"),
+        "selectThreeError": MessageLookupByLibrary.simpleMessage("Please pick 3"),
+        "shareButton": MessageLookupByLibrary.simpleMessage("Share"),
+        "shareMessage": MessageLookupByLibrary.simpleMessage(
+            "My English name is :name:.\n\n:meaning:\n\n:en-bio:\n\nDownload the NameMe app and find out yours now!"),
+        "startButton": MessageLookupByLibrary.simpleMessage("Let\'s Go!"),
+        "weatherQuestion": MessageLookupByLibrary.simpleMessage("Pick your favorite")
+      };
 }

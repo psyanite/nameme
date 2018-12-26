@@ -3,96 +3,96 @@
   "landingPrompt1": "Let me help you find an English name",
   "@landingPrompt1": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "landingPrompt2": "Simply answer 8 questions",
   "@landingPrompt2": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "landingPrompt3": "And we'll find the perfect name for you",
   "@landingPrompt3": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "startButton": "Let's Go!",
   "@startButton": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "genderQuestion": "What's your gender?",
   "@genderQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "bloodQuestion": "What's your blood-type?",
   "@bloodQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "foodQuestion": "Pick your favorite",
   "@foodQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "animalQuestion": "Pick your favorite",
   "@animalQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "weatherQuestion": "Pick your favorite",
   "@weatherQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "drinkQuestion": "Pick your favorite",
   "@drinkQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "sceneryQuestion": "Pick your favorite",
   "@sceneryQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "extrasQuestion": "Pick 3 favorites",
   "@extrasQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "selectOneError": "Please pick 1",
   "@selectOneError": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "selectThreeError": "Please pick 3",
   "@selectThreeError": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "nameDesc": "Your name is",
   "@nameDesc": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "bioDesc": "Your short bio",
   "@bioDesc": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "shareButton": "Share",
   "@shareButton": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "shareMessage": "My English name is :name:.\n\n:meaning:\n\n:en-bio:\n\nDownload the NameMe app and find out yours now!",
   "@shareMessage": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "goAgainButton": "Go Again",
   "@goAgainButton": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   }
 }

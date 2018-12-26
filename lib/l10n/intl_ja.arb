@@ -3,96 +3,96 @@
   "landingPrompt1": "あなたのためだけに英語の名前を見つけてあげる",
   "@landingPrompt1": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "landingPrompt2": "単純に8つの質問に答えて！",
   "@landingPrompt2": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "landingPrompt3": "",
   "@landingPrompt3": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "startButton": "スタート！",
   "@startButton": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "genderQuestion": "あなたの性別は何ですか？",
   "@genderQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "bloodQuestion": "あなたの血液型は何ですか？",
   "@bloodQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "foodQuestion": "あなたのお気に入りを選ぶ",
   "@foodQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "animalQuestion": "あなたのお気に入りを選ぶ",
   "@animalQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "weatherQuestion": "あなたのお気に入りを選ぶ",
   "@weatherQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "drinkQuestion": "あなたのお気に入りを選ぶ",
   "@drinkQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "sceneryQuestion": "あなたのお気に入りを選ぶ",
   "@sceneryQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "extrasQuestion": "3つのお気に入りを選ぶ",
   "@extrasQuestion": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "selectOneError": "1を選んでください",
   "@selectOneError": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "selectThreeError": "3を選んでください",
   "@selectThreeError": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "nameDesc": "あなたのお名前は",
   "@nameDesc": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "bioDesc": "あなたのお伝記は",
   "@bioDesc": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "shareButton": "シェア",
   "@shareButton": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "shareMessage": "私の英語名前は:name:なのです.\n\n:meaning:\n\n:en-bio:\n\n:locale-bio:\n\n早くNameMeをダウンロードして自分の英語名前を見つけよう!",
   "@shareMessage": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   },
   "goAgainButton": "リプレイ",
   "@goAgainButton": {
     "type": "text",
-    "placeholders": {}
+    "placeholders": { }
   }
 }
