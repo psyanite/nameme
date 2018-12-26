@@ -68,12 +68,11 @@ class Util {
 
   static BannerAd buildBannerAd() {
     return BannerAd(
-      adUnitId: BannerAd.testAdUnitId,
-//      adUnitId: 'ca-app-pub-6524279756456110/5953941201',
-      size: AdSize.banner,
-      listener: (MobileAdEvent event) {
-        print("banner event: $event");
-      }
-    );
+//        adUnitId: BannerAd.testAdUnitId,
+        adUnitId: 'ca-app-pub-6524279756456110/5953941201',
+        size: AdSize.banner,
+        listener: (MobileAdEvent event) {
+          print("============================= Banner ad event: $event");
+        });
   }
 }

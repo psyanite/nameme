@@ -22,9 +22,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   _startTimer(BuildContext context) async {
     return Timer(Duration(seconds: 3), () {
       _interstitial = InterstitialAd(
-          adUnitId: InterstitialAd.testAdUnitId,
-//            adUnitId: 'ca-app-pub-6524279756456110/9294296703',
+//          adUnitId: InterstitialAd.testAdUnitId,
+          adUnitId: 'ca-app-pub-6524279756456110/9294296703',
           listener: (MobileAdEvent event) {
+            print("============================= Interstitial banner ad event: $event");
             if (event == MobileAdEvent.closed || event == MobileAdEvent.failedToLoad) {
               Navigator.pushReplacement(
                 context,
