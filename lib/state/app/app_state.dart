@@ -1,5 +1,6 @@
 import 'package:crystal/state/error/error_state.dart';
 import 'package:crystal/state/me/me_state.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -8,7 +9,7 @@ class AppState {
   final ErrorState error;
 
   AppState({MeState me, ErrorState error})
-      : me = me ?? MeState(),
+      : me = me ?? MeState().copyWith(analytics: FirebaseAnalytics()),
         error = error ?? ErrorState();
 
   AppState copyWith({MeState me}) {

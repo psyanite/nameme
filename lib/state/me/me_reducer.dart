@@ -10,6 +10,10 @@ Reducer<MeState> meReducer = combineReducers([
   new TypedReducer<MeState, ClearMe>(clearMe),
 ]);
 
+MeState setMediaQuery(MeState state, SetMediaData action) {
+  return state.copyWith(mediaData: action.mediaQuery);
+}
+
 MeState addEmoji(MeState state, AddEmoji action) {
   switch (action.emoji.type) {
     case EmojiType.Animal:
@@ -31,14 +35,10 @@ MeState addEmoji(MeState state, AddEmoji action) {
   }
 }
 
-MeState setMediaQuery(MeState state, SetMediaData action) {
-  return state.copyWith(mediaData: action.mediaQuery);
-}
-
 MeState addEmojis(MeState state, AddEmojis action) {
   return state.copyWith(extras: action.emojis);
 }
 
 MeState clearMe(MeState state, ClearMe action) {
-  return MeState().copyWith(mediaData: state.mediaData);
+  return MeState().copyWith(mediaData: state.mediaData, analytics: state.analytics, observer: state.observer);
 }

@@ -16,6 +16,10 @@ dependencies:
     flutter_localizations:
         sdk: flutter
 
+    # Firebase
+    firebase_core: ^0.2.5
+    firebase_analytics: ^1.0.6
+
     # Redux
     redux: ^3.0.0
     flutter_redux: ^0.5.2
@@ -27,6 +31,7 @@ dependencies:
     cupertino_icons: ^0.1.2
     share: ^0.5.3
     firebase_admob: ^0.7.0
+    device_info: ^0.3.0
 
 
 

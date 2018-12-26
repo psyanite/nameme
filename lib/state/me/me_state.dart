@@ -1,10 +1,14 @@
 import 'package:crystal/models/emoji.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 
 @immutable
 class MeState {
   final MediaQueryData mediaData;
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
   final Emoji animal;
   final Emoji blood;
   final Emoji drink;
@@ -16,6 +20,8 @@ class MeState {
 
   MeState({
     this.mediaData,
+    this.analytics,
+    this.observer,
     this.animal,
     this.blood,
     this.drink,
@@ -27,9 +33,21 @@ class MeState {
   });
 
   MeState copyWith(
-      {MediaQueryData mediaData,Emoji animal, Emoji blood, Emoji drink, List<Emoji> extras, Emoji food, Emoji gender, Emoji scenery, Emoji weather}) {
+      {MediaQueryData mediaData,
+      FirebaseAnalytics analytics,
+      FirebaseAnalyticsObserver observer,
+      Emoji animal,
+      Emoji blood,
+      Emoji drink,
+      List<Emoji> extras,
+      Emoji food,
+      Emoji gender,
+      Emoji scenery,
+      Emoji weather}) {
     return MeState(
       mediaData: mediaData ?? this.mediaData,
+      analytics: analytics ?? this.analytics,
+      observer: observer != null ? observer : analytics != null ? FirebaseAnalyticsObserver(analytics: analytics) : this.observer,
       animal: animal ?? this.animal,
       blood: blood ?? this.blood,
       drink: drink ?? this.drink,
@@ -45,6 +63,8 @@ class MeState {
   String toString() {
     return '''{
         mediaData: $mediaData,
+        analytics: $analytics,
+        observer: $observer, 
         animal: $animal,
         blood: $blood,
         drink: $drink,

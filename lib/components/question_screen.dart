@@ -3,17 +3,35 @@ import 'package:crystal/locale/locales.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/question.dart';
 import 'package:crystal/presentation/theme.dart';
+import 'package:crystal/state/app/app_state.dart';
 import 'package:crystal/utils/util.dart';
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 
-class QuestionScreen extends StatefulWidget {
+class QuestionScreen extends StatelessWidget {
   @override
-  _QuestionScreenState createState() => _QuestionScreenState();
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, FirebaseAnalytics>(
+        converter: (Store<AppState> store) => store.state.me.analytics,
+        builder: (context, analytics) => _Presenter(analytics: analytics),
+        rebuildOnChange: false);
+  }
 }
 
-class _QuestionScreenState extends State<QuestionScreen> {
+class _Presenter extends StatefulWidget {
+  final FirebaseAnalytics analytics;
+
+  _Presenter({this.analytics});
+
+  @override
+  _PresenterState createState() => _PresenterState();
+}
+
+class _PresenterState extends State<_Presenter> {
   PageController _controller = new PageController();
   BannerAd _bannerAd;
 
@@ -36,6 +54,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   void initState() {
     super.initState();
+    widget.analytics.setCurrentScreen(screenName: "question_screen");
     _bannerAd = Util.buildBannerAd()..load();
   }
 
@@ -53,15 +72,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
     var questions = getQuestions(context);
     return Container(
       child: Scaffold(
-        body: Column(
-          children: <Widget>[
-            _Dots(controller: _controller, itemCount: questions.length, height: _dotContainerHeight),
-            Container(
-              height: MediaQuery.of(context).size.height - _dotContainerHeight - _bannerAdHeight,
-              child: _questionScreens(questions),
-            ),
-          ],
-        )),
+          body: Column(
+        children: <Widget>[
+          _Dots(controller: _controller, itemCount: questions.length, height: _dotContainerHeight),
+          Container(
+            height: MediaQuery.of(context).size.height - _dotContainerHeight - _bannerAdHeight,
+            child: _questionScreens(questions),
+          ),
+        ],
+      )),
       padding: EdgeInsets.only(bottom: _bannerAdHeight),
       color: Colors.grey[50],
     );
@@ -75,13 +94,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
           child: PageView(
             physics: NeverScrollableScrollPhysics(),
             controller: _controller,
-            children: List<Widget>.from(questions.map((q) =>
-              QuestionView(
-                question: q,
-                onNext: () {
-                  _controller.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
-                },
-              ))),
+            children: List<Widget>.from(questions.map((q) => QuestionView(
+                  question: q,
+                  onNext: () {
+                    _controller.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
+                  },
+                ))),
           ),
         ),
       ],
@@ -124,17 +142,19 @@ class _Dots extends AnimatedWidget {
       child: InkWell(
         onTap: () => _onTap(index),
         child: Container(
-          width: 30.0,
-          height: 10.0,
-          decoration: BoxDecoration(
-            color: isSelected ? null : Color(0xFFEEEEEE),
-            borderRadius: BorderRadius.circular(5.0),
-            gradient: isSelected ? LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: [0, 1.0],
-              colors: [Burnt.gradientYellow, Burnt.gradientPink],
-            ) : null)),
+            width: 30.0,
+            height: 10.0,
+            decoration: BoxDecoration(
+                color: isSelected ? null : Color(0xFFEEEEEE),
+                borderRadius: BorderRadius.circular(5.0),
+                gradient: isSelected
+                    ? LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        stops: [0, 1.0],
+                        colors: [Burnt.gradientYellow, Burnt.gradientPink],
+                      )
+                    : null)),
       ),
     );
   }

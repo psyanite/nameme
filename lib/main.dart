@@ -67,6 +67,7 @@ class _MainState extends State<_Main> {
           const Locale('ko', ''),
           const Locale('ja', ''),
         ],
+        navigatorObservers: <NavigatorObserver>[widget.store.state.me.observer],
       ),
     );
   }
