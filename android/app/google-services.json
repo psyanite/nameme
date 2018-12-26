@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "78759597703",
-    "firebase_url": "https://burntoast-fix.firebaseio.com",
-    "project_id": "burntoast-fix",
-    "storage_bucket": "burntoast-fix.appspot.com"
+    "project_number": "18027454034",
+    "firebase_url": "https://nameme-fix.firebaseio.com",
+    "project_id": "nameme-fix",
+    "storage_bucket": "nameme-fix.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:78759597703:android:fc317a33a43181db",
+        "mobilesdk_app_id": "1:18027454034:android:2060b854043c19a6",
         "android_client_info": {
-          "package_name": "com.burntoast.crystal"
+          "package_name": "com.burntoast.nameme"
         }
       },
       "oauth_client": [
         {
-          "client_id": "78759597703-5grpi0j3gv6l89ti95j13ijqgt2u0uk5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.burntoast.crystal",
-            "certificate_hash": "1da5ec92f69916ff6646943dc4ec8aa622cfd269"
-          }
-        },
-        {
-          "client_id": "78759597703-fsma7jmhf9nav3a86r8o7ibbvmavpt6j.apps.googleusercontent.com",
+          "client_id": "18027454034-4a8fnaviic00klo6p9o47nmeij5jt06u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCSS4lJkr7KI3RIsOL50NT_3niSiuQLgoo"
+          "current_key": "AIzaSyDu6S9NN3CQgELIOmjEf8NyY3eJwNN0KWA"
         }
       ],
       "services": {
@@ -37,20 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "78759597703-fsma7jmhf9nav3a86r8o7ibbvmavpt6j.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "78759597703-s5d783k7evpp1mrk0g0go6oh1p97q2ta.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.burntoast.crystal"
-              }
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
