@@ -39,13 +39,13 @@ class _Main extends StatefulWidget {
   _Main({this.store});
 
   @override
-  _MainState createState() {
-    return new _MainState();
-  }
+  _MainState createState() => new _MainState();
 }
 
 class _MainState extends State<_Main> {
   double _dpi = 1.0;
+
+  _MainState();
 
   @override
   Widget build(BuildContext context) {

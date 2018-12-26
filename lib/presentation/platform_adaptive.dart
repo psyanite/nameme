@@ -8,15 +8,12 @@ ThemeData getTheme(context, dpi) {
     accentColor: Burnt.material_primary,
     fontFamily: Burnt.fontBase,
     textTheme: Theme.of(context)
-      .textTheme
-      .apply(
-      bodyColor: Burnt.textBody,
-      displayColor: Burnt.textBody,
-    )
-      .merge(TextTheme(
-      body1: TextStyle(fontSize: 15.0/dpi),
-      button: TextStyle(fontSize: 15.0/dpi)
-    )),
+        .textTheme
+        .apply(
+          bodyColor: Burnt.textBody,
+          displayColor: Burnt.textBody,
+        )
+        .merge(TextTheme(body1: TextStyle(fontSize: 15.0 / dpi), button: TextStyle(fontSize: 15.0 / dpi))),
   );
 }
 

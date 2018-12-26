@@ -78,7 +78,10 @@ class _BigButtonState extends State<BigButton> {
   }
 
   Widget _spinner() {
-    return new SizedBox(width: 16.0, height: 16.0, child: CircularProgressIndicator(strokeWidth: 2.0, valueColor: AlwaysStoppedAnimation<Color>(Colors.white)));
+    return new SizedBox(
+        width: 16.0,
+        height: 16.0,
+        child: CircularProgressIndicator(strokeWidth: 2.0, valueColor: AlwaysStoppedAnimation<Color>(Colors.white)));
   }
 
   void _onPressed() {

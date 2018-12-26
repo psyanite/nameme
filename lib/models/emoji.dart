@@ -8,6 +8,14 @@ class Emoji {
   final String ko;
   final String ja;
 
+  Emoji({
+    this.name,
+    this.type,
+    this.en,
+    this.ko,
+    this.ja,
+  });
+
   static final List<Emoji> animals = [
     Emoji(name: 'bear', type: EmojiType.Animal, en: 'bears', ko: '곰', ja: 'くま'),
     Emoji(name: 'cat', type: EmojiType.Animal, en: 'cats', ko: '곰', ja: 'ねこ'),
@@ -74,19 +82,10 @@ class Emoji {
     Emoji(name: 'sunny', type: EmojiType.Weather, en: 'under the sun', ko: '晴れた日', ja: '晴れた日'),
   ];
 
-
   Widget getImage({double scale}) {
     String path = 'assets/emojis/${EnumUtil.format(this.type.toString()).toLowerCase()}/${this.name}.png';
     return Image.asset(path, scale: scale ?? 3.0);
   }
-
-  Emoji({
-    this.name,
-    this.type,
-    this.en,
-    this.ko,
-    this.ja,
-  });
 }
 
-enum EmojiType { Animal, Blood, Drink, Extra, Food, Gender, Scenery, Weather}
+enum EmojiType { Animal, Blood, Drink, Extra, Food, Gender, Scenery, Weather }
