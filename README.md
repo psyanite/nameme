@@ -1,22 +1,34 @@
-# 🔮 nameme
+# 🔮 NameMe 1.0.0
 
-Make your own Magic
+🔮 Make your own Magic
+
+🔥 Download and install the APK [now](https://github.com/psyanite/nameme/blob/master/docs/nameme.apk)!
+
+NameMe is a Flutter-Dart internationalized app available in Korean, Japanese and English. Whether you're looking for a new name for yourself, your friend or your baby, NameMe is exactly what you need. Simply answer 8 questions and your unique name will be delivered to you! Share your name via any social media of choice. 
+
+## Features
+* Integrated with Firebase Google Admob with Banner and Interstitial ads
+* Uses a unique algorithm to select a random female or male name
+* Provides over 50 female and 60 male names
+* Based on the [nameme-mockups](https://github.com/psyanite/nameme-mockup) built in SCSS and HTML
+* The CSV file of curated names is generated via the Scala [nameme-generator](https://github.com/psyanite/nameme-generator)
+
+<div align="center">
+  <img src="https://github.com/psyanite/nameme/blob/master/docs/images/splash.jpg" width="250px"/>
+  <img src="https://github.com/psyanite/nameme/blob/master/docs/images/landing.jpg" width="250px"/>
+</div>
+<div align="center">
+  <img src="https://github.com/psyanite/nameme/blob/master/docs/images/question.jpg" width="250px"/>
+  <img src="https://github.com/psyanite/nameme/blob/master/docs/images/result-en.jpg" width="250px"/>
+  <img src="https://github.com/psyanite/nameme/blob/master/docs/images/result-jp.jpg" width="250px"/>
+</div>
 
 ## Things To Do
-* Add google app id https://firebase.google.com/docs/android/setup
-* Name pronunciations
+* Add [Google app ID](https://firebase.google.com/docs/android/setup)
+* Implement name pronunciations
 * Get 20-30 different Korean name meanings
-* Get Korean translation for in-app copy
-* Get Japanese translations for in-app copy
-
-# Done
-* Google ads
-* Name and meaning Excel file generator
-* Collect girl and boy names
-* Add launcher icon
-* Korean, Japanese and English languages
-* Push repos into Bitbucket
-* Fix formatting for smaller screen sizes
+* Get Korean translation for in-app phrases
+* Get Japanese translations for in-app phrases
 
 ## Ideas
 * Name variations 
@@ -35,4 +47,3 @@ Make your own Magic
 ## How to APK
 * Run `flutter clean`
 * Run `flutter build apk`
-
