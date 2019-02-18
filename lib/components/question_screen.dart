@@ -82,7 +82,7 @@ class _PresenterState extends State<_Presenter> {
         ],
       )),
       padding: EdgeInsets.only(bottom: _bannerAdHeight),
-      color: Colors.grey[50],
+      color: Burnt.paper,
     );
   }
 

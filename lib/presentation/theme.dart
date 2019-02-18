@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Burnt {
-  static const material_primary = Colors.orange;
+  static const materialPrimary = Colors.orange;
   static const primary = Color(0xFFFFAB40);
   static const primaryLight = Color(0xFFFFC86B);
   static const gradientYellow = Color(0xFFF6D242);
   static const gradientPink = Color(0xFFFF52E5);
-  static const textBody = Color(0xFF373a3c);
+  static const paper = Color(0xFFFAFAFA);
+  static const textBody = Color(0xFF373A3C);
   static const fontBase = 'OpenSans';
   static const fontFancy = 'NatureBeauty';
   static const fontLight = FontWeight.w100;

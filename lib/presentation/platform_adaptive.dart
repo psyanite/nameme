@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 ThemeData getTheme(context, dpi) {
   return ThemeData(
-    primarySwatch: Burnt.material_primary,
-    accentColor: Burnt.material_primary,
+    primarySwatch: Burnt.materialPrimary,
+    accentColor: Burnt.materialPrimary,
     fontFamily: Burnt.fontBase,
     textTheme: Theme.of(context)
         .textTheme
