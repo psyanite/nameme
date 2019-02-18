@@ -54,7 +54,7 @@ class _MainState extends State<_Main> {
       store: widget.store,
       child: MaterialApp(
         title: 'NameMe',
-        color: Color(0xFFA92395),
+        color: Color(0xFFFB8B9D),
         theme: getTheme(context, _dpi),
         routes: <String, WidgetBuilder>{
           MainRoutes.root: (context) => SplashScreen(setDpi: (dpi) => setState(() => setState(() => _dpi = dpi))),
