@@ -1,5 +1,4 @@
 import 'package:crystal/components/loading_screen.dart';
-import 'package:crystal/locale/locales.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/question.dart';
 import 'package:crystal/presentation/theme.dart';
@@ -12,9 +11,10 @@ import 'package:redux/redux.dart';
 
 class QuestionView extends StatelessWidget {
   final Question question;
-  final Function onNext;
+  final Function goToPreviousPage;
+  final Function goToNextPage;
 
-  QuestionView({Key key, this.question, this.onNext}) : super(key: key);
+  QuestionView({Key key, this.question, this.goToPreviousPage, this.goToNextPage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,8 @@ class QuestionView extends StatelessWidget {
               addEmojis: props.addEmojis,
               selected: props.selected,
               question: question,
-              onNext: onNext,
+              goToPreviousPage: goToPreviousPage,
+              goToNextPage: goToNextPage,
             ));
   }
 }
@@ -35,9 +36,10 @@ class _Presenter extends StatefulWidget {
   final Function addEmojis;
   final List<Emoji> selected;
   final Question question;
-  final Function onNext;
+  final Function goToPreviousPage;
+  final Function goToNextPage;
 
-  _Presenter({this.addEmoji, this.addEmojis, this.selected, this.question, this.onNext});
+  _Presenter({this.addEmoji, this.addEmojis, this.selected, this.question, this.goToPreviousPage, this.goToNextPage});
 
   @override
   _PresenterState createState() => _PresenterState();
@@ -48,7 +50,8 @@ class _PresenterState extends State<_Presenter> {
   Function addEmojis;
   List<Emoji> selected;
   Question question;
-  Function onNext;
+  Function goToPreviousPage;
+  Function goToNextPage;
 
   @override
   initState() {
@@ -57,7 +60,8 @@ class _PresenterState extends State<_Presenter> {
     addEmojis = widget.addEmojis;
     selected = widget.selected;
     question = widget.question;
-    onNext = widget.onNext;
+    goToPreviousPage = widget.goToPreviousPage;
+    goToNextPage = widget.goToNextPage;
   }
 
   @override
@@ -76,21 +80,26 @@ class _PresenterState extends State<_Presenter> {
           children: children,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _onPressed(context, addEmoji, addEmojis),
-        child: Container(
-            width: 100.0,
-            height: 100.0,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0, 1.0],
-                  colors: [Burnt.gradientYellow, Burnt.gradientPink],
-                )),
-            child: Icon(Icons.arrow_forward, color: Colors.white)),
-      ),
+      floatingActionButton: question.isFirst ? null : _fab(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+
+  Widget _fab() {
+    return FloatingActionButton(
+      onPressed: () => goToPreviousPage(),
+      child: Container(
+          width: 100.0,
+          height: 100.0,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0, 1.0],
+                colors: [Burnt.gradientYellow, Burnt.gradientPink],
+              )),
+          child: Icon(Icons.arrow_back, color: Colors.white)),
     );
   }
 
@@ -120,12 +129,20 @@ class _PresenterState extends State<_Presenter> {
             } else {
               selected.add(emoji);
               setState(() => selected = selected);
+              if (selected.length == 3) {
+                addEmojis(selected);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => LoadingScreen()),
+                );
+              }
             }
           }
         : () {
-            setState(() {
-              selected = [emoji];
-            });
+            selected.add(emoji);
+            setState(() => selected = selected);
+            addEmoji(emoji);
+            goToNextPage();
           };
     return Padding(
       padding: EdgeInsets.all(8.0),
@@ -149,39 +166,6 @@ class _PresenterState extends State<_Presenter> {
         highlightColor: Colors.transparent,
       ),
     );
-  }
-
-  void _onPressed(BuildContext context, Function addEmoji, Function addEmojis) {
-    if (question.isMulti && selected.length != 3) {
-      _snack(context, AppLocalizations.of(context).selectThreeError);
-      return;
-    } else if (!question.isMulti && selected.length != 1) {
-      _snack(context, AppLocalizations.of(context).selectOneError);
-      return;
-    }
-    if (question.isMulti)
-      addEmojis(selected);
-    else
-      addEmoji(selected[0]);
-    if (question.isLast) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => LoadingScreen()),
-      );
-    } else {
-      onNext();
-    }
-  }
-
-  _snack(context, text) {
-    final snackBar = SnackBar(
-      content: Text(text),
-      action: SnackBarAction(
-        label: 'OK',
-        onPressed: () {},
-      ),
-    );
-    Scaffold.of(context).showSnackBar(snackBar);
   }
 }
 

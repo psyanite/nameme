@@ -40,14 +40,14 @@ class _PresenterState extends State<_Presenter> {
 
   List<Question> getQuestions(BuildContext context) {
     return [
-      Question(question: AppLocalizations.of(context).genderQuestion, emojis: Emoji.genders),
+      Question(question: AppLocalizations.of(context).genderQuestion, emojis: Emoji.genders, isFirst: true),
       Question(question: AppLocalizations.of(context).bloodQuestion, emojis: Emoji.bloods),
       Question(question: AppLocalizations.of(context).foodQuestion, emojis: Emoji.food),
       Question(question: AppLocalizations.of(context).animalQuestion, emojis: Emoji.animals),
       Question(question: AppLocalizations.of(context).weatherQuestion, emojis: Emoji.weather),
       Question(question: AppLocalizations.of(context).drinkQuestion, emojis: Emoji.drinks),
       Question(question: AppLocalizations.of(context).sceneryQuestion, emojis: Emoji.sceneries),
-      Question(question: AppLocalizations.of(context).extrasQuestion, emojis: Emoji.extras, isLast: true, isMulti: true),
+      Question(question: AppLocalizations.of(context).extrasQuestion, emojis: Emoji.extras, isMulti: true),
     ];
   }
 
@@ -72,7 +72,7 @@ class _PresenterState extends State<_Presenter> {
     var questions = getQuestions(context);
     return Container(
       child: Scaffold(
-          body: Column(
+        body: Column(
         children: <Widget>[
           _Dots(controller: _controller, itemCount: questions.length, height: _dotContainerHeight),
           Container(
@@ -80,7 +80,8 @@ class _PresenterState extends State<_Presenter> {
             child: _questionScreens(questions),
           ),
         ],
-      )),
+      ),
+      ),
       padding: EdgeInsets.only(bottom: _bannerAdHeight),
       color: Burnt.paper,
     );
@@ -96,7 +97,10 @@ class _PresenterState extends State<_Presenter> {
             controller: _controller,
             children: List<Widget>.from(questions.map((q) => QuestionView(
                   question: q,
-                  onNext: () {
+                  goToPreviousPage: () {
+                    _controller.previousPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
+                  },
+                  goToNextPage: () {
                     _controller.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
                   },
                 ))),
