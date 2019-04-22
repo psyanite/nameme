@@ -2,10 +2,6 @@ import 'package:crystal/state/me/me_state.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 
 class Util {
-  static String random(String string) {
-    return string.split('.')[1];
-  }
-
   static String getBio(MeState me, String name, String languageCode) {
     switch (languageCode) {
       case 'ko':
@@ -35,8 +31,8 @@ class Util {
   }
 
   static String _koBio(MeState me, String name) {
-    final template = "내이름은{name}입니다. 저는{blood}과{animal}을좋아하는{food}의혈액형입니다. " +
-        "나는{drink}{scenery}{weather}를마시는것을즐긴다. 나는{extra-1},{extra-2},{extra-3}을좋아합니다.";
+    final template = "저의 이름은 {name} 입니다. 저는 {blood}형 이고, {animal}동물, {food}음식을 좋아합니다. " +
+        "{weather}, 저는 {scenery}에서  술 마시는 {drink} 좋아해요. 나는{extra-1},{extra-2},{extra-3}.";
     return template
         .replaceAll('{name}', name)
         .replaceAll('{blood}', me.blood.ko)

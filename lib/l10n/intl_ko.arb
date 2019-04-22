@@ -1,96 +1,96 @@
 {
   "@@last_modified": "2018-12-09T11:36:18.210613",
-  "landingPrompt1": "내가 영어 이름을 찾도록 도와 줄게",
+  "landingPrompt1": "8가지의 질문에 답해주시면,",
   "@landingPrompt1": {
     "type": "text",
     "placeholders": { }
   },
-  "landingPrompt2": "간단히 대답 8 질문",
+  "landingPrompt2": "당신이 원하는 영어이름을",
   "@landingPrompt2": {
     "type": "text",
     "placeholders": { }
   },
-  "landingPrompt3": "그리고 우리는 당신에게 완벽한 이름을 찾을 것입니다",
+  "landingPrompt3": "찾을수 있도록 도와드리겠습니다.",
   "@landingPrompt3": {
     "type": "text",
     "placeholders": { }
   },
-  "startButton": "가자!",
+  "startButton": "시작!",
   "@startButton": {
     "type": "text",
     "placeholders": { }
   },
-  "genderQuestion": "너의 성별이 뭐니?",
+  "genderQuestion": "당신의 성별은 무엇입니까?",
   "@genderQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "bloodQuestion": "네 혈액형이 뭐니?",
+  "bloodQuestion": "당신의 혈액형은 무엇입니까?",
   "@bloodQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "foodQuestion": "좋아하는 것을 골라라",
+  "foodQuestion": "1개를 선택하세요",
   "@foodQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "animalQuestion": "좋아하는 것을 골라라",
+  "animalQuestion": "1개를 선택하세요",
   "@animalQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "weatherQuestion": "좋아하는 것을 골라라",
+  "weatherQuestion": "1개를 선택하세요",
   "@weatherQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "drinkQuestion": "좋아하는 것을 골라라",
+  "drinkQuestion": "1개를 선택하세요",
   "@drinkQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "sceneryQuestion": "좋아하는 것을 골라라",
+  "sceneryQuestion": "1개를 선택하세요",
   "@sceneryQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "extrasQuestion": "즐겨 찾기 3 개 선택",
+  "extrasQuestion": "3가지를 선택주세요",
   "@extrasQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "selectOneError": "1을 선택하십시오",
+  "selectOneError": "1가지를 선택해주세요",
   "@selectOneError": {
     "type": "text",
     "placeholders": { }
   },
-  "selectThreeError": "3을 선택하십시오",
+  "selectThreeError": "3가지를 선택해주세요",
   "@selectThreeError": {
     "type": "text",
     "placeholders": { }
   },
-  "nameDesc": "당신의 이름입니다",
+  "nameDesc": "당신의 이름은",
   "@nameDesc": {
     "type": "text",
     "placeholders": { }
   },
-  "bioDesc": "당신의 짧은 생체는",
+  "bioDesc": "당신은",
   "@bioDesc": {
     "type": "text",
     "placeholders": { }
   },
-  "shareButton": "몫",
+  "shareButton": "공유하기",
   "@shareButton": {
     "type": "text",
     "placeholders": { }
   },
-  "shareMessage": "내 영어 이름은 :name: 입니다.\n\n:meaning: \n\n :en-bio: \n\n :locale-bio: \n\n 빨리 NameMe 을 다운로드하여 자신의 영어 이름 을 찾아라!",
+  "shareMessage": "저의 이름은 :name: 입니다.\n\n:meaning:\n\n:en-bio:\n\n:locale-bio:\n\n지금 바로 ‘NameMe’ app 을 다운받고 당신에게 딱맞는 영어이름을 찾아보세요!",
   "@shareMessage": {
     "type": "text",
     "placeholders": { }
   },
-  "goAgainButton": "다시 가다",
+  "goAgainButton": "되돌아가기",
   "@goAgainButton": {
     "type": "text",
     "placeholders": { }

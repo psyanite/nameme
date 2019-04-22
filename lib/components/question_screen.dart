@@ -71,16 +71,15 @@ class _PresenterState extends State<_Presenter> {
     _bannerAd..show();
     var questions = getQuestions(context);
     return Container(
-      child: Scaffold(
-        body: Column(
-        children: <Widget>[
-          _Dots(controller: _controller, itemCount: questions.length, height: _dotContainerHeight),
-          Container(
-            height: MediaQuery.of(context).size.height - _dotContainerHeight - _bannerAdHeight,
-            child: _questionScreens(questions),
+      child: SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: <Widget>[
+              _Dots(controller: _controller, itemCount: questions.length, height: _dotContainerHeight),
+              Expanded(child: _questionScreens(questions)),
+            ],
           ),
-        ],
-      ),
+        ),
       ),
       padding: EdgeInsets.only(bottom: _bannerAdHeight),
       color: Burnt.paper,
@@ -89,6 +88,7 @@ class _PresenterState extends State<_Presenter> {
 
   Widget _questionScreens(List<Question> questions) {
     return Stack(
+      fit: StackFit.expand,
       alignment: AlignmentDirectional.bottomCenter,
       children: <Widget>[
         Container(
