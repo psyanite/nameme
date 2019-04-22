@@ -54,6 +54,7 @@ class _MainState extends State<_Main> {
       store: widget.store,
       child: MaterialApp(
         title: 'NameMe',
+        debugShowCheckedModeBanner: false,
         color: Color(0xFFFB8B9D),
         theme: getTheme(context, _dpi),
         routes: <String, WidgetBuilder>{
