@@ -58,7 +58,8 @@ class _MainState extends State<_Main> {
         color: Color(0xFFFB8B9D),
         theme: getTheme(context, _dpi),
         routes: <String, WidgetBuilder>{
-          MainRoutes.root: (context) => SplashScreen(setDpi: (dpi) => setState(() => setState(() => _dpi = dpi))),
+          MainRoutes.root: (context) =>
+              SplashScreen(setDpi: (dpi) => setState(() => _dpi = dpi)),
         },
         localizationsDelegates: [
           AppLocalizationsDelegate(),

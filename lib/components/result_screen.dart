@@ -285,13 +285,14 @@ class _Props {
   _Props({this.me, this.clearMe, this.isCompact, this.nameFontSize, this.bodyFontSize, this.analytics});
 
   static fromStore(Store<AppState> store) {
-    var isCompact = store.state.me.mediaData.size.height < 760.0;
+    var isCompact = store.state.me.mediaData.size.height < (415*896+100);
+    var textScaleFactor = store.state.me.mediaData.textScaleFactor;
     return _Props(
       me: store.state.me,
       clearMe: () => store.dispatch(ClearMe()),
       isCompact: isCompact,
-      nameFontSize: isCompact ? 45.0 : 58.0,
-      bodyFontSize: isCompact ? 12.0 : 18.0,
+      nameFontSize: isCompact ? 45.0 / textScaleFactor : 58.0 / textScaleFactor,
+      bodyFontSize: isCompact ? 12.0 / textScaleFactor : 18.0 / textScaleFactor,
       analytics: store.state.me.analytics,
     );
   }
