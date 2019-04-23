@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 
 class AppLocalizations {
   static Future<AppLocalizations> load(Locale locale) {
-    final String name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
+    String name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
+    if (name == 'en') name = 'ko'; // If the user is English, default to Korean.
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
