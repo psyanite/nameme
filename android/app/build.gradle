@@ -13,12 +13,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    throw new GradleException("versionCode not found. Define flutter.versionCode in the local.properties file.")
+    flutterVersionCode = '1'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    throw new GradleException("versionName not found. Define flutter.versionName in the local.properties file.")
+    flutterVersionName = '1.0.0'
 }
 
 apply plugin: 'com.android.application'
@@ -41,8 +41,14 @@ android {
         applicationId "com.burntoast.nameme"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+//        if (System.getenv("CI")) {
+//            def buildNumber = System.getenv("BUILD_NUMBER")
+//            versionName = "1.0." + buildNumber
+//            versionCode = Integer.valueOf(buildNumber)
+//        } else {
+            versionName flutterVersionName
+            versionCode flutterVersionCode.toInteger()
+//        }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
