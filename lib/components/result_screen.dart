@@ -65,7 +65,7 @@ class _PresenterState extends State<_Presenter> {
   void initState() {
     super.initState();
     widget.analytics.setCurrentScreen(screenName: "result_screen");
-    _bannerAd = Util.buildBannerAd()..load();
+    _bannerAd = Util.buildBannerAd();
   }
 
   @override
@@ -101,7 +101,7 @@ class _PresenterState extends State<_Presenter> {
   }
 
   Widget _presenter(BuildContext context) {
-    _bannerAd..show();
+    _bannerAd..load()..show();
     return Container(
       child: Scaffold(
           body: SafeArea(
