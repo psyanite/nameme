@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:crystal/state/me/me_state.dart';
+import 'package:device_info/device_info.dart';
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:postgres/postgres.dart';
+import 'package:flutter/services.dart' show PlatformException;
 
 class Util {
   static String getBio(MeState me, String name, String languageCode) {
@@ -70,5 +75,60 @@ class Util {
         listener: (MobileAdEvent event) {
           print("============================= Banner ad event: $event");
         });
+  }
+
+  static Future<PostgreSQLConnection> getToaster() async {
+    var connection = PostgreSQLConnection(
+      "ec2-174-129-10-235.compute-1.amazonaws.com", 5432, "d7m44nps91g6kq",
+      username: "gmzifdigfxmosh",
+      password: "ff0b1873dbf05d7898e02c6fc9f3b8be8f6150f26f8a06bd01f0da5b0e7c08a7",
+      useSSL: true,
+    );
+    await connection.open();
+    return connection;
+  }
+
+  static Future<String> getOs() async {
+    try {
+      if (Platform.isAndroid) {
+        return 'android';
+      } else if (Platform.isIOS) {
+        return 'ios';
+      }
+      return 'unknown';
+    } on PlatformException {
+      return 'platform-exception';
+    }
+  }
+
+  static Future<List<String>> getDeviceInfo() async {
+    final DeviceInfoPlugin plugin = DeviceInfoPlugin();
+    String id = 'error';
+    String brand = '';
+    String model = '';
+    try {
+      if (Platform.isAndroid) {
+        var device = await plugin.androidInfo;
+        id = 'android-${device.androidId}-${device.brand}-${device.manufacturer}-${device.model}-${device.board}-${device.bootloader}-${device.id}';
+        brand = '${device.brand}-${device.manufacturer}';
+        model = '${device.model}';
+      } else if (Platform.isIOS) {
+        var device = await plugin.iosInfo;
+        id = 'ios-${device.name}-${device.systemName}-${device.systemVersion}-${device.identifierForVendor}';
+        brand = 'apple';
+        model = '${device.model}';
+      } else {
+        id = 'unknown-platform';
+      }
+    } on PlatformException {
+      if (Platform.isAndroid) {
+        id = 'android-platform-exception';
+      } else if (Platform.isIOS) {
+        id = 'ios-platform-exception';
+      } else {
+        id = 'unknown-platform-platform-exception';
+      }
+    }
+    return [ id, brand, model ];
   }
 }

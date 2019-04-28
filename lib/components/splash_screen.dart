@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _setAnalyticsUserId(FirebaseAnalytics analytics) async {
     String id;
-    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
       if (Platform.isAndroid) {
         var build = await deviceInfoPlugin.androidInfo;

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:crystal/components/home_screen.dart';
@@ -93,6 +94,7 @@ class _PresenterState extends State<_Presenter> {
               enBio = Util.getBio(widget.me, name.name, 'en');
               localeBio = languageCode != 'en' ? Util.getBio(widget.me, name.name, languageCode) : null;
               _sendGeneratedNameAnalytics();
+              _sendToDatabase();
               return _presenter(context);
           }
         });
@@ -219,15 +221,39 @@ class _PresenterState extends State<_Presenter> {
     Share.share(message);
   }
 
+  void _sendToDatabase() async {
+    var os = await Util.getOs();
+    var deviceInfo = await Util.getDeviceInfo();
+    var toaster = await Util.getToaster();
+    var query = "INSERT INTO submissions "
+      "(os, device_id, device_brand, device_model, name, gender, animal, blood, drink, extras, food, scenery, weather) VALUES "
+      "(@os, @deviceId, @deviceBrand, @deviceModel, @name, @gender, @animal, @blood, @drink, @extras, @food, @scenery, @weather)";
+    toaster.query(query, substitutionValues: {
+      "os" : os,
+      "deviceId" : deviceInfo[0],
+      "deviceBrand" : deviceInfo[1],
+      "deviceModel" : deviceInfo[2],
+      "name": name.name,
+      "gender" : widget.me.gender.name,
+      "animal" : widget.me.animal.name,
+      "blood" : widget.me.blood.name,
+      "drink" : widget.me.drink.name,
+      "extras" : widget.me.extras.map((e) => e.name).join(", "),
+      "food" : widget.me.food.name,
+      "scenery" : widget.me.scenery.name,
+      "weather" : widget.me.weather.name,
+    });
+  }
+
   void _sendGeneratedNameAnalytics() {
-    widget.analytics.setUserProperty(name: UserProperties.quizAnimal, value: widget.me.animal.name);
-    widget.analytics.setUserProperty(name: UserProperties.quizBlood, value: widget.me.blood.name);
-    widget.analytics.setUserProperty(name: UserProperties.quizDrink, value: widget.me.drink.name);
-    widget.analytics.setUserProperty(name: UserProperties.quizExtras, value: widget.me.extras.map((e) => e.name).join(", "));
-    widget.analytics.setUserProperty(name: UserProperties.quizFood, value: widget.me.food.name);
-    widget.analytics.setUserProperty(name: UserProperties.quizGender, value: widget.me.gender.name);
-    widget.analytics.setUserProperty(name: UserProperties.quizScenery, value: widget.me.scenery.name);
-    widget.analytics.setUserProperty(name: UserProperties.quizWeather, value: widget.me.weather.name);
+//    widget.analytics.setUserProperty(name: UserProperties.quizAnimal, value: widget.me.animal.name);
+//    widget.analytics.setUserProperty(name: UserProperties.quizBlood, value: widget.me.blood.name);
+//    widget.analytics.setUserProperty(name: UserProperties.quizDrink, value: widget.me.drink.name);
+//    widget.analytics.setUserProperty(name: UserProperties.quizExtras, value: widget.me.extras.map((e) => e.name).join(", "));
+//    widget.analytics.setUserProperty(name: UserProperties.quizFood, value: widget.me.food.name);
+//    widget.analytics.setUserProperty(name: UserProperties.quizGender, value: widget.me.gender.name);
+//    widget.analytics.setUserProperty(name: UserProperties.quizScenery, value: widget.me.scenery.name);
+//    widget.analytics.setUserProperty(name: UserProperties.quizWeather, value: widget.me.weather.name);
     widget.analytics.logEvent(name: Events.generatedName, parameters: _buildParameters());
   }
 
@@ -286,7 +312,7 @@ class _Props {
   _Props({this.me, this.clearMe, this.isCompact, this.nameFontSize, this.bodyFontSize, this.analytics});
 
   static fromStore(Store<AppState> store) {
-    var isCompact = store.state.me.mediaData.size.height < (415*896+100);
+    var isCompact = store.state.me.mediaData.size.height < (415 * 896 + 100);
     var textScaleFactor = store.state.me.mediaData.textScaleFactor;
     return _Props(
       me: store.state.me,
