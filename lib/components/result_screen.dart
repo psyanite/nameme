@@ -76,6 +76,7 @@ class _PresenterState extends State<_Presenter> {
   @override
   Widget build(BuildContext context) {
     languageCode = Localizations.localeOf(context).languageCode;
+    if (languageCode == 'en') languageCode = 'ko'; // Force Korean
     if (widget.me.gender == null) return Scaffold();
     if (name != null) return _presenter(context);
     return FutureBuilder<Name>(

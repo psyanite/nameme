@@ -30,12 +30,12 @@
     "type": "text",
     "placeholders": { }
   },
-  "foodQuestion": "1개를 선택하세요",
+  "foodQuestion": "당신이 가장 좋아하는 음식을 선택하세요",
   "@foodQuestion": {
     "type": "text",
     "placeholders": { }
   },
-  "animalQuestion": "1개를 선택하세요",
+  "animalQuestion": "당신이 가장 좋아하는 동물을 선택하세요",
   "@animalQuestion": {
     "type": "text",
     "placeholders": { }

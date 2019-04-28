@@ -20,12 +20,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "animalQuestion" : MessageLookupByLibrary.simpleMessage("1개를 선택하세요"),
+    "animalQuestion" : MessageLookupByLibrary.simpleMessage("당신이 가장 좋아하는 동물을 선택하세요"),
     "bioDesc" : MessageLookupByLibrary.simpleMessage("당신은"),
     "bloodQuestion" : MessageLookupByLibrary.simpleMessage("당신의 혈액형은 무엇입니까?"),
     "drinkQuestion" : MessageLookupByLibrary.simpleMessage("1개를 선택하세요"),
     "extrasQuestion" : MessageLookupByLibrary.simpleMessage("3가지를 선택주세요"),
-    "foodQuestion" : MessageLookupByLibrary.simpleMessage("1개를 선택하세요"),
+    "foodQuestion" : MessageLookupByLibrary.simpleMessage("당신이 가장 좋아하는 음식을 선택하세요"),
     "genderQuestion" : MessageLookupByLibrary.simpleMessage("당신의 성별은 무엇입니까?"),
     "goAgainButton" : MessageLookupByLibrary.simpleMessage("되돌아가기"),
     "landingPrompt1" : MessageLookupByLibrary.simpleMessage("8가지의 질문에 답해주시면,"),
