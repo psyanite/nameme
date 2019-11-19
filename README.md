@@ -1,4 +1,4 @@
-# 🔮 NameMe 1.0.0
+# 🔮 NameMe
 
 🔮 Make your own Magic
 
@@ -45,5 +45,5 @@ NameMe is a Flutter-Dart internationalized app available in Korean, Japanese and
 * Run `flutter packages pub run flutter_launcher_icons:main`
 
 ## How to APK
-* Run `flutter clean`
-* Run `flutter build apk`
+* Update version in `local.properties`
+* Run `flutter clean && flutter build apk --target-platform android-arm,android-arm64 --split-per-abi --release`

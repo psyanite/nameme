@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:crystal/components/result_screen.dart';
+import 'package:crystal/config/config.dart';
 import 'package:crystal/presentation/theme.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
@@ -19,40 +20,41 @@ class _LoadingScreenState extends State<LoadingScreen> {
     super.dispose();
   }
 
-  _startTimer(BuildContext context) async {
-    return Timer(Duration(seconds: 3), () {
-      _interstitial = InterstitialAd(
-//          adUnitId: InterstitialAd.testAdUnitId,
-          adUnitId: 'ca-app-pub-6524279756456110/9294296703',
-          listener: (MobileAdEvent event) {
-            print("============================= Interstitial banner ad event: $event");
-            if (event == MobileAdEvent.closed || event == MobileAdEvent.failedToLoad) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => ResultScreen()),
-              );
-            }
-          })
-        ..load()
-        ..show();
-    });
+  _showAd(BuildContext context) async {
+    _interstitial = InterstitialAd(
+        adUnitId: Config.interAdId,
+        listener: (MobileAdEvent event) {
+          print("============================= Interstitial banner ad event: $event");
+          if (event == MobileAdEvent.closed || event == MobileAdEvent.failedToLoad) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (_) => ResultScreen()),
+            );
+          }
+        })
+      ..load()
+      ..show();
   }
 
   @override
   Widget build(BuildContext context) {
-    _startTimer(context);
+    _showAd(context);
     return Scaffold(
-        body: Container(
-            child: Center(
-                child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            )),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: [0, 1.0],
-              colors: [Burnt.gradientYellow, Burnt.gradientPink],
-            ))));
+      body: Container(
+        child: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          ),
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [0, 1.0],
+            colors: [Burnt.gradientYellow, Burnt.gradientPink],
+          ),
+        ),
+      ),
+    );
   }
 }

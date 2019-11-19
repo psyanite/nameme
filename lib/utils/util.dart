@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:crystal/config/config.dart';
 import 'package:crystal/state/me/me_state.dart';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_admob/firebase_admob.dart';
@@ -69,8 +70,7 @@ class Util {
 
   static BannerAd buildBannerAd() {
     return BannerAd(
-//        adUnitId: BannerAd.testAdUnitId,
-        adUnitId: 'ca-app-pub-6524279756456110/5953941201',
+        adUnitId: Config.bannerAdId,
         size: AdSize.banner,
         listener: (MobileAdEvent event) {
           print("============================= Banner ad event: $event");
