@@ -4,7 +4,7 @@
 
 🔥 Download and install the APK [now](https://github.com/psyanite/nameme/blob/master/docs/nameme.apk)!
 
-NameMe is a Flutter-Dart internationalized app available in Korean, Japanese and English. Whether you're looking for a new name for yourself, your friend or your baby, NameMe is exactly what you need. Simply answer 8 questions and discover your unique name! Share your name via any social media of choice. 
+NameMe is a Flutter-Dart internationalized app available in Korean, Japanese and English. Whether you're looking for a new name for yourself, your friend or your baby, NameMe is exactly what you need. Simply answer 8 questions and discover your unique name! Share your name via any social media of choice.
 
 ## Features
 * Integrated with Firebase Google Admob with Banner and Interstitial ads
@@ -31,7 +31,7 @@ NameMe is a Flutter-Dart internationalized app available in Korean, Japanese and
 * Get Japanese translations for in-app phrases
 
 ## Ideas
-* Name variations 
+* Name variations
 * Allow users to save names as favorites for later access
 
 ## How to Locale
@@ -43,7 +43,3 @@ NameMe is a Flutter-Dart internationalized app available in Korean, Japanese and
 ## How to Icons
 * Update icons in `assets/launcher`
 * Run `flutter packages pub run flutter_launcher_icons:main`
-
-## How to APK
-* Update version in `local.properties`
-* Run `flutter clean && flutter build apk --target-platform android-arm,android-arm64 --split-per-abi --release`

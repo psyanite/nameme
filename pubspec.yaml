@@ -4,76 +4,76 @@ description: Make your own Magic
 version: 1.2.0+13
 
 environment:
-    sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
 
-    # Flutter
-    flutter:
-        sdk: flutter
-    flutter_localizations:
-        sdk: flutter
+  # Flutter
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
-    # Firebase
-    firebase_admob: ^0.9.0+9
-    firebase_core: ^0.4.1+5
-    firebase_analytics: ^1.0.6
+  # Firebase
+  firebase_admob: ^0.9.0+9
+  firebase_core: ^0.4.1+5
+  firebase_analytics: ^1.0.6
 
-    # Redux
-    redux: ^3.0.0
-    flutter_redux: ^0.5.2
-    redux_logging: ^0.3.0
-    redux_thunk: ^0.2.0
+  # Redux
+  redux: ^3.0.0
+  flutter_redux: ^0.5.2
+  redux_logging: ^0.3.0
+  redux_thunk: ^0.2.0
 
-    # Utils
-    device_info: ^0.4.0+1
-    cupertino_icons: ^0.1.2
-    intl: ^0.15.7
-    postgres: ^1.0.2
-    share: ^0.5.3
+  # Utils
+  device_info: ^0.4.0+1
+  cupertino_icons: ^0.1.2
+  intl: ^0.16.0
+  postgres: ^1.0.2
+  share: ^0.5.3
 
 
 
 dev_dependencies:
-    intl_translation: 0.17.2
-    flutter_launcher_icons: ^0.7.0
+  intl_translation: ^0.17.7
+  flutter_launcher_icons: ^0.7.0
 
 
 
 flutter:
 
-    uses-material-design: true
+  uses-material-design: true
 
-    assets:
-      - assets/emojis/animal/
-      - assets/emojis/blood/
-      - assets/emojis/drink/
-      - assets/emojis/extra/
-      - assets/emojis/food/
-      - assets/emojis/gender/
-      - assets/emojis/scenery/
-      - assets/emojis/weather/
-      - assets/names/
+  assets:
+    - assets/emojis/animal/
+    - assets/emojis/blood/
+    - assets/emojis/drink/
+    - assets/emojis/extra/
+    - assets/emojis/food/
+    - assets/emojis/gender/
+    - assets/emojis/scenery/
+    - assets/emojis/weather/
+    - assets/names/
 
-    fonts:
-    -   family: NatureBeauty
-        fonts:
-        -   asset: assets/fonts/Nature-Beauty.ttf
+  fonts:
+    - family: NatureBeauty
+      fonts:
+        - asset: assets/fonts/Nature-Beauty.ttf
 
-    -   family: OpenSans
-        fonts:
-          -   asset: assets/fonts/OpenSans-Light.ttf
-              weight: 100
-          -   asset: assets/fonts/OpenSans-Regular.ttf
-          -   asset: assets/fonts/OpenSans-Bold.ttf
-              weight: 600
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Light.ttf
+          weight: 100
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 600
 
 
 
 flutter_icons:
-    ios: true
-    android: true
-    image_path_ios: "assets/launcher/icon.png"
-    image_path_android: "assets/launcher/icon.png"
-    adaptive_icon_background: "assets/launcher/background.png"
-    adaptive_icon_foreground: "assets/launcher/foreground.png"
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/icon.png"
+  image_path_android: "assets/launcher/icon.png"
+  adaptive_icon_background: "assets/launcher/background.png"
+  adaptive_icon_foreground: "assets/launcher/foreground.png"
