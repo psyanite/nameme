@@ -1,9 +1,11 @@
-import 'package:crystal/components/loading_screen.dart';
+import 'package:crystal/components/result_screen.dart';
+import 'package:crystal/config/config.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/question.dart';
 import 'package:crystal/presentation/theme.dart';
 import 'package:crystal/state/app/app_state.dart';
 import 'package:crystal/state/me/me_actions.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -19,15 +21,16 @@ class QuestionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, dynamic>(
-        converter: (Store<AppState> store) => _Props.fromStore(store, question),
-        builder: (context, props) => _Presenter(
-              addEmoji: props.addEmoji,
-              addEmojis: props.addEmojis,
-              selected: props.selected,
-              question: question,
-              goToPreviousPage: goToPreviousPage,
-              goToNextPage: goToNextPage,
-            ));
+      converter: (Store<AppState> store) => _Props.fromStore(store, question),
+      builder: (context, props) =>
+        _Presenter(
+          addEmoji: props.addEmoji,
+          addEmojis: props.addEmojis,
+          selected: props.selected,
+          question: question,
+          goToPreviousPage: goToPreviousPage,
+          goToNextPage: goToNextPage,
+        ));
   }
 }
 
@@ -46,6 +49,8 @@ class _Presenter extends StatefulWidget {
 }
 
 class _PresenterState extends State<_Presenter> {
+  InterstitialAd _interstitial;
+  bool _showLoader = false;
   Function addEmoji;
   Function addEmojis;
   List<Emoji> selected;
@@ -62,14 +67,63 @@ class _PresenterState extends State<_Presenter> {
     question = widget.question;
     goToPreviousPage = widget.goToPreviousPage;
     goToNextPage = widget.goToNextPage;
+    _interstitial = InterstitialAd(
+      adUnitId: Config.interAdId,
+      listener: (MobileAdEvent event) {
+        print("============================= Interstitial banner ad event: $event");
+        if (event == MobileAdEvent.closed || event == MobileAdEvent.failedToLoad) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => ResultScreen()),
+          );
+        }
+      })
+      ..load();
+  }
+
+  @override
+  void dispose() {
+    _interstitial.dispose();
+    super.dispose();
+  }
+
+  _showAd() {
+    this.setState(() => _showLoader = true);
+    _interstitial.show();
   }
 
   @override
   Widget build(BuildContext context) {
+    return (_showLoader == true) ? _loadingView() : _contentView();
+  }
+
+  Widget _loadingView() {
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          ),
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [0, 1.0],
+            colors: [Burnt.gradientYellow, Burnt.gradientPink],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _contentView() {
     var children = List<Widget>.from([
-      Column(
-        children: <Widget>[Text(question.question, style: TextStyle(fontWeight: Burnt.fontBold)), Container(height: 20.0), _emojis()],
-      )
+      Column(children: <Widget>[
+        Text(question.question, style: TextStyle(fontWeight: Burnt.fontBold)),
+        Container(height: 20.0),
+        _emojis(),
+      ])
     ]);
     if (question.emojis.length < 8) children.add(Container(height: 70.0));
     return Scaffold(
@@ -89,17 +143,17 @@ class _PresenterState extends State<_Presenter> {
     return FloatingActionButton(
       onPressed: () => goToPreviousPage(),
       child: Container(
-          width: 100.0,
-          height: 100.0,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0, 1.0],
-                colors: [Burnt.gradientYellow, Burnt.gradientPink],
-              )),
-          child: Icon(Icons.arrow_back, color: Colors.white)),
+        width: 100.0,
+        height: 100.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [0, 1.0],
+            colors: [Burnt.gradientYellow, Burnt.gradientPink],
+          )),
+        child: Icon(Icons.arrow_back, color: Colors.white)),
     );
   }
 
@@ -122,46 +176,43 @@ class _PresenterState extends State<_Presenter> {
 
   Widget _emoji(Emoji emoji) {
     Function onTap = question.isMulti
-        ? () {
-            if (selected.contains(emoji)) {
-              selected.remove(emoji);
-              setState(() => selected = selected);
-            } else {
-              selected.add(emoji);
-              setState(() => selected = selected);
-              if (selected.length == 3) {
-                addEmojis(selected);
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => LoadingScreen()),
-                );
-              }
-            }
-          }
-        : () {
-            selected.add(emoji);
-            setState(() => selected = selected);
-            addEmoji(emoji);
-            goToNextPage();
-          };
+      ? () {
+      if (selected.contains(emoji)) {
+        selected.remove(emoji);
+        setState(() => selected = selected);
+      } else {
+        selected.add(emoji);
+        setState(() => selected = selected);
+        if (selected.length == 3) {
+          addEmojis(selected);
+          _showAd();
+        }
+      }
+    }
+      : () {
+      selected.add(emoji);
+      setState(() => selected = selected);
+      addEmoji(emoji);
+      goToNextPage();
+    };
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: InkWell(
         onTap: onTap,
         child: Container(
-            padding: EdgeInsets.all(10.0),
-            child: emoji.getImage(),
-            decoration: BoxDecoration(
-                color: selected.contains(emoji) ? null : Color(0xFFEEEEEE),
-                shape: BoxShape.circle,
-                gradient: selected.contains(emoji)
-                    ? LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: [0, 1.0],
-                        colors: [Burnt.gradientYellow, Burnt.gradientPink],
-                      )
-                    : null)),
+          padding: EdgeInsets.all(10.0),
+          child: emoji.getImage(),
+          decoration: BoxDecoration(
+            color: selected.contains(emoji) ? null : Color(0xFFEEEEEE),
+            shape: BoxShape.circle,
+            gradient: selected.contains(emoji)
+              ? LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [0, 1.0],
+              colors: [Burnt.gradientYellow, Burnt.gradientPink],
+            )
+              : null)),
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
       ),

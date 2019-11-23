@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:crystal/components/home_screen.dart';
 import 'package:crystal/locale/locales.dart';
 import 'package:crystal/models/analytics/events.dart';
-import 'package:crystal/models/analytics/user_properties.dart';
 import 'package:crystal/models/emoji.dart';
 import 'package:crystal/models/name.dart';
 import 'package:crystal/presentation/components.dart';
@@ -84,10 +82,6 @@ class _PresenterState extends State<_Presenter> {
         future: _getRandomName(widget.me.gender.name),
         builder: (context, AsyncSnapshot<Name> snapshot) {
           switch (snapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              return Scaffold();
             case ConnectionState.done:
               if (snapshot.hasError) return Scaffold();
               name = snapshot.data;
@@ -96,6 +90,7 @@ class _PresenterState extends State<_Presenter> {
               _sendGeneratedNameAnalytics();
               _sendToDatabase();
               return _presenter(context);
+            default: return Scaffold();
           }
         });
   }
