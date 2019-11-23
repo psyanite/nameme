@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _startTimer() async {
-    return Timer(Duration(seconds: 3), () {
+    return Timer(Duration(milliseconds: 500), () {
       widget.setDpi(MediaQuery.of(context).textScaleFactor);
       Navigator.pushReplacement(
         context,
